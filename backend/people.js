@@ -1,7 +1,7 @@
 module.exports = {
     People: [
         {
-            id: 1,
+            id: '1',
             first_name: "John",
             last_name: "Doe",
             age: 69,
@@ -11,7 +11,7 @@ module.exports = {
             }
         },
         {
-            id: 2,
+            id: '2',
             first_name: "John",
             last_name: "Doe",
             age: 69,
