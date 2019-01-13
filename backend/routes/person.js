@@ -1,17 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const PersonHandler = require('../Handlers/PersonHandler');
 
-router.get('/', (req, res, next) => {
+router.get('/_find', (req, res, next) => {
     res.status(200).json({
-        type: 'person'
+        People: PersonHandler.find(req.query.id)
     })
 });
 
-router.get('/_find', (req, res, next) => {
-    let idArray = Array.isArray(req.query.id) ? req.query.id : [req.query.id];
-    console.log(idArray);
+router.get('/:id', (req, res, next) => {
     res.status(200).json({
-        type: 'aviv gay'
+        Person: PersonHandler.find(req.params.id)
     })
 });
 
