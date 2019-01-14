@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const dbHandler = require('../Handlers/dbHandler/dbHandler');
-const Discussion = require('../Handlers/dbHandler/models/discussionModel');
+const Role = require('../Handlers/dbHandler/models/roleModel');
 
 dbHandler.connect();
 
-const MODEL_NAME = "Discussion";
+const MODEL_NAME = "Role";
 
 router.get('/', async (req, res, next) => {
     let response = await dbHandler.read(MODEL_NAME);
@@ -15,13 +15,12 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     if(Object.keys(req.body).length !== 0) {
-        let newDisc = new Discussion({discussionID: req.body.discussionID, name: req.body.name});
-        let response = await dbHandler.create(newDisc);
+        let newRole = new Role({roleID: req.body. roleID, name: req.body.name});
+        let response = await dbHandler.create(newRole);
         res.status(response.status).json(response.message)
     } else
         res.status(412).json({ error: 'Bad input'})
 });
-
 
 router.put('/', async (req, res, next) => {
     if(Object.keys(req.body).length !== 0) {
