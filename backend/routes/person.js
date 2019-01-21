@@ -1,6 +1,8 @@
+const path = require('path');
 const express = require('express');
 const router = express.Router();
-const PersonHandler = require('../Handlers/PersonHandler');
+
+const PersonHandler = require(path.resolve(__dirname, '../Handlers/PersonHandler'));
 
 router.get('/_find', (req, res, next) => {
     res.status(200).json({

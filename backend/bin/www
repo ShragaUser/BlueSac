@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
-const app = require('../app');
+const path = require('path');
 const http = require('http');
+
+const app = require(path.resolve(__dirname, '../app'));
 
 const port = process.env.PORT || '3001';
 app.set('port', port);
