@@ -4,6 +4,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const path = require('path');
+
 const personRoutes = require(path.resolve(__dirname, './routes/person'));
 const discussionRoutes = require(path.resolve(__dirname, './routes/discussion'));
 const roleRoutes = require(path.resolve(__dirname, './routes/role'));

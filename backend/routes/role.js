@@ -1,21 +1,25 @@
+const path = require('path');
 const express = require('express');
 const router = express.Router();
 
-const dbHandler = require('../Handlers/dbHandler/dbHandler');
-const Role = require('../Handlers/dbHandler/models/roleModel');
-
-dbHandler.connect();
+const utils = require(path.resolve(__dirname, '../utils/utils.js'));
+const dbHandler = require(path.resolve(__dirname, '../Handlers/dbHandler/dbHandler'));
+const Role = require(path.resolve(__dirname, '../Handlers/dbHandler/models/roleModel'));
 
 const MODEL_NAME = "Role";
 
 router.get('/', async (req, res, next) => {
-    let response = await dbHandler.read(MODEL_NAME);
+    let filter = {};
+    if(utils.checkRequest(req, ['filter']))
+        filter = req.body.filter;
+
+    let response = await dbHandler.read(MODEL_NAME, filter);
     res.status(response.status).json(response.message);
 });
 
 router.post('/', async (req, res, next) => {
-    if(Object.keys(req.body).length !== 0) {
-        let newRole = new Role({roleID: req.body. roleID, name: req.body.name});
+    if(utils.checkRequest(req, ['newObj'])) {
+        let newRole = new Role(req.body.newObj);
         let response = await dbHandler.create(newRole);
         res.status(response.status).json(response.message)
     } else
@@ -23,7 +27,7 @@ router.post('/', async (req, res, next) => {
 });
 
 router.put('/', async (req, res, next) => {
-    if(Object.keys(req.body).length !== 0) {
+    if(utils.checkRequest(req, ['update', 'filter'])) {
         let update = req.body.update;
         let filter = req.body.filter;
         let response = await dbHandler.update(MODEL_NAME, filter, update);
@@ -33,12 +37,14 @@ router.put('/', async (req, res, next) => {
 });
 
 router.delete('/', async (req, res, next) => {
-    if(Object.keys(req.body.filter).length !== 0) {
-        let filter = req.body.filter;
-        let response = await dbHandler.deleteMany(MODEL_NAME, filter);
-        res.status(response.status).json(response.message)
-    } else
-        res.status(412).json({ error: 'Bad input'})
+    let filter = {};
+    if(!utils.checkRequest(req, ['filter']))
+        res.status(412).json({ error: 'Bad input'});
+    else
+        filter = req.body.filter;
+
+    let response = await dbHandler.deleteMany(MODEL_NAME, filter);
+    res.status(response.status).json(response.message)
 });
 
 module.exports = router;

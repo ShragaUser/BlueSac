@@ -3,8 +3,14 @@ const Schema = mongoose.Schema;
 
 const roleSchema = Schema(
     {
-        roleID: Number,
         name: String,
+        unit: String,
+        rank: Number,
+        description: String,
+        requirements: String,
+        skills: String,
+        approved_by: String,
+        approved_at: Date
     }
 );
 

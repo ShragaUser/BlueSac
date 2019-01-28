@@ -1,30 +1,33 @@
+const path = require('path');
 const express = require('express');
 const router = express.Router();
 
-const dbHandler = require('../Handlers/dbHandler/dbHandler');
-const Discussion = require('../Handlers/dbHandler/models/discussionModel');
-
-dbHandler.connect();
+const utils = require(path.resolve(__dirname, '../utils/utils.js'));
+const dbHandler = require(path.resolve(__dirname, '../Handlers/dbHandler/dbHandler'));
+const Discussion = require(path.resolve(__dirname, '../Handlers/dbHandler/models/discussionModel'));
 
 const MODEL_NAME = "Discussion";
 
 router.get('/', async (req, res, next) => {
-    let response = await dbHandler.read(MODEL_NAME);
+    let filter = {};
+    if(utils.checkRequest(req, ['filter']))
+        filter = req.body.filter;
+
+    let response = await dbHandler.read(MODEL_NAME, filter);
     res.status(response.status).json(response.message);
 });
 
 router.post('/', async (req, res, next) => {
-    if(Object.keys(req.body).length !== 0) {
-        let newDisc = new Discussion({discussionID: req.body.discussionID, name: req.body.name});
+    if(utils.checkRequest(req, ['newObj'])) {
+        let newDisc = new Discussion(req.body.newObj);
         let response = await dbHandler.create(newDisc);
         res.status(response.status).json(response.message)
     } else
         res.status(412).json({ error: 'Bad input'})
 });
 
-
 router.put('/', async (req, res, next) => {
-    if(Object.keys(req.body).length !== 0) {
+    if(utils.checkRequest(req, ['update', 'filter'])) {
         let update = req.body.update;
         let filter = req.body.filter;
         let response = await dbHandler.update(MODEL_NAME, filter, update);
@@ -34,7 +37,7 @@ router.put('/', async (req, res, next) => {
 });
 
 router.delete('/', async (req, res, next) => {
-    if(Object.keys(req.body.filter).length !== 0) {
+    if(utils.checkRequest(['filter'])) {
         let filter = req.body.filter;
         let response = await dbHandler.deleteMany(MODEL_NAME, filter);
         res.status(response.status).json(response.message)

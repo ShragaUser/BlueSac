@@ -1,14 +1,12 @@
+const path = require('path');
 const mongoose = require('mongoose');
 
-const Role = require('./models/roleModel');
-const Discussion = require('./models/discussionModel');
-
-let dbUrl = 'mongodb://sean1515:seand1515@ds233323.mlab.com:33323/bluesac';
-let mongoDB = process.env.MONGODB_URI || dbUrl;
+const Role = require(path.resolve(__dirname, './models/roleModel'));
+const { mongoDB } = require(path.resolve(__dirname, '../../config/config'));
+const Discussion = require(path.resolve(__dirname, './models/discussionModel'));
 
 let dbHandler = {};
 
-dbHandler.connect = connect;
 dbHandler.create = create;
 dbHandler.read = read;
 dbHandler.update = update;
@@ -20,7 +18,7 @@ const MODELS = {
 };
 
 function connect() {
-    dbHandler.db = mongoose.connect(mongoDB).then(() => {
+    dbHandler.dbConn = mongoose.connect(mongoDB).then(() => {
         console.log("connected to mongodb")
     }).catch(err => {
         console.log(err)
@@ -62,5 +60,7 @@ function deleteMany(modelName, filter) {
         })
     })
 }
+
+connect();
 
 module.exports = dbHandler;
