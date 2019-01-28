@@ -27,7 +27,7 @@ router.post('/', async (req, res, next) => {
 });
 
 router.put('/', async (req, res, next) => {
-    if(Object.keys(req.body).length !== 0) {
+    if(utils.checkRequest(req, ['update', 'filter'])) {
         let update = req.body.update;
         let filter = req.body.filter;
         let response = await dbHandler.update(MODEL_NAME, filter, update);
@@ -37,7 +37,7 @@ router.put('/', async (req, res, next) => {
 });
 
 router.delete('/', async (req, res, next) => {
-    if(Object.keys(req.body.filter).length !== 0) {
+    if(utils.checkRequest(['filter'])) {
         let filter = req.body.filter;
         let response = await dbHandler.deleteMany(MODEL_NAME, filter);
         res.status(response.status).json(response.message)

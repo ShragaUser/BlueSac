@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const Person = require(path.resolve(__dirname, './personModel'));
 
-const discussionJobs = Schema(
+const discussionRoles = Schema(
     {
-        job: {type: Schema.Types.ObjectId, ref: 'People'},
-        discussion_people: [Person]
+        role: {type: Schema.Types.ObjectId, ref: 'Role'},
+        discussion_people: [{type: Schema.Types.ObjectId, ref: 'People'}]
     }
 );
 
@@ -15,7 +15,7 @@ const discussionSchema = Schema(
     {
         name: String,
         date: Date,
-        discussion_roles: [discussionJobs]
+        discussion_roles: [discussionRoles]
     }
 );
 

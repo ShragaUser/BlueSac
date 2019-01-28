@@ -7,8 +7,7 @@ const personSchema = Schema(
         last_name: String,
         person_id: String,
         process: Number
-    },
-    { collection: 'People' }
+    }
 );
 
-module.exports = personSchema;
+module.exports = mongoose.model('Person', personSchema);

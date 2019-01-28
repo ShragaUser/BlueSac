@@ -3,13 +3,9 @@ let utils = {};
 utils.checkRequest = checkRequest;
 
 function checkRequest(req, params) {
-    let toReturn = true;
-    params.forEach(param => {
-        if (!req.body[param])
-            toReturn = false;
+    return params.every(param => {
+        return req.body[param]
     });
-
-    return toReturn;
 }
 
 module.exports = utils;
