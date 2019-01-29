@@ -1,9 +1,14 @@
 let utils = {};
 
 utils.checkRequest = checkRequest;
+utils.getModelName = getModelName;
 
-function checkRequest(req, params) {
-    return params.every(param => req.body[param]);
+function checkRequest(body, params) {
+    return params.every(param => body[param]);
+}
+
+function getModelName(url) {
+    return url.slice(url.lastIndexOf("/") + 1);
 }
 
 module.exports = utils;

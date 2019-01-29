@@ -5,9 +5,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const path = require('path');
 
-const personRoutes = require(path.resolve(__dirname, './routes/person'));
-const discussionRoutes = require(path.resolve(__dirname, './routes/discussion'));
-const roleRoutes = require(path.resolve(__dirname, './routes/role'));
+const router = require(path.resolve(__dirname, './routes/router'));
 
 const app = express();
 
@@ -17,8 +15,8 @@ app.use(logger("dev"));
 app.use(cors());
 app.use(helmet());
 
-app.use('/api/person', personRoutes);
-app.use('/api/discussion', discussionRoutes);
-app.use('/api/role', roleRoutes);
+app.use('/api/role', router);
+app.use('/api/person', router);
+app.use('/api/discussion', router);
 
 module.exports = app;
