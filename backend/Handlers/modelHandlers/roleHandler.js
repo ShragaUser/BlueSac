@@ -16,7 +16,6 @@ roleHandler.deleteMany = deleteMany;
 async function create(body) {
     let newRole = new Role(body.newObj);
     let res = await dbHandler.create(newRole);
-    console.log(res);
     return res;
 }
 
@@ -24,7 +23,6 @@ async function read(body) {
     let filter = {};
     if(utils.checkRequest(body, ['filter']))
         filter = body.filter;
-
     return await dbHandler.read(MODEL_NAME, filter);
 }
 
@@ -38,7 +36,6 @@ async function deleteMany(body) {
     let filter = {};
     if(utils.checkRequest(body, ['filter']))
         filter = body.filter;
-
     return await dbHandler.deleteMany(MODEL_NAME, filter);
 }
 
