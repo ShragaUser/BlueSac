@@ -15,32 +15,22 @@ const HANDLERS = {
 
 router.get('/', async (req, res, next) => {
     let modelName = utils.getModelName(req.baseUrl);
-    let response = await HANDLERS[modelName].read(req.body);
-    res.status(response.status).json(response.message);
+    await utils.dispatchHandler(HANDLERS[modelName].read, req, res);
 });
 
 router.post('/', async (req, res, next) => {
     let modelName = utils.getModelName(req.baseUrl);
-    if(utils.checkRequest(req.body, ['newObj'])) {
-        let response = await HANDLERS[modelName].create(req.body);
-        res.status(response.status).json(response.message)
-    } else
-        res.status(412).json({ error: 'Bad input' })
+    await utils.dispatchHandler(HANDLERS[modelName].create, req, res, ['newObj']);
 });
 
 router.put('/', async (req, res, next) => {
     let modelName = utils.getModelName(req.baseUrl);
-    if(utils.checkRequest(req, ['update', 'filter'])) {
-        let response = await HANDLERS[modelName].update(req.body);
-        res.status(response.status).json(response.message)
-    } else
-        res.status(412).json({ error: 'Bad input'})
+    await utils.dispatchHandler(HANDLERS[modelName].update, req, res, ['update', 'filter']);
 });
 
 router.delete('/', async (req, res, next) => {
     let modelName = utils.getModelName(req.baseUrl);
-    let response = await HANDLERS[modelName].deleteMany(req.body);
-    res.status(response.status).json(response.message);
+    await utils.dispatchHandler(HANDLERS[modelName].deleteMany, req, res);
 });
 
 module.exports = router;

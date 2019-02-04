@@ -6,9 +6,6 @@ const helmet = require('helmet');
 const path = require('path');
 
 const router = require(path.resolve(__dirname, './routes/router'));
-const roleRoutes = require(path.resolve(__dirname, './routes/role'));
-const personRoutes = require(path.resolve(__dirname, './routes/person'));
-const discussionRoutes = require(path.resolve(__dirname, './routes/discussion'));
 
 const app = express();
 

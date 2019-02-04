@@ -47,7 +47,7 @@ function update(modelName, filter, obj) {
     return new Promise((resolve, reject) => {
         MODELS[modelName].updateMany(filter, obj, (err, docs) => {
             if (err) resolve({status: 500, message: err});
-            resolve({status: 200, message: docs});
+            resolve({status: 200, message: 'docs has been updated!'});
         })
     })
 }
