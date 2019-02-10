@@ -1,7 +1,11 @@
 const path = require('path');
-const test = require('tape');
-const request = require('supertest');
-const app = require(path.resolve(__dirname, '../app'));
+
+const should = require("should");
+const supertest = require("supertest");
+
+const dbHandler = require(path.resolve(__dirname, '../Handlers/dbHandler/dbHandler'));
+
+const server = supertest.agent("http://localhost:3001");
 
 const roleObj = {
     name: "tohnithan",
@@ -13,30 +17,25 @@ const roleObj = {
     approved_by: "kidon"
 };
 
-test('POST /role', (test) => {
-    request(app)
-        .post('/api/role')
-        .send({ newObj: roleObj })
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .end((err, res) => {
-            test.error(err, 'No error');
-            test.same(res.body, "object has been saved to db", 'role as expected');
-            test.end();
-        });
-});
+describe("GET /api/role", () => {
 
-test('GET /role', (test) => {
-    request(app)
-        .get('/api/role')
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .end((err, res) => {
-            let expectedObj = [roleObj];
-            test.error(err, 'No error');
-            test.same(res.body, expectedObj, 'role as expected');
-            test.end();
-        });
-});
+    // #1 should return home page
 
+    it("should return array of roles", (done) => {
+
+        // calling home page api
+        server
+            .get("/api/role")
+            .expect("Content-type",/json/)
+            .expect(200) // THis is HTTP response
+            .end((err,res) => {
+                // HTTP status should be 200
+                console.log(res);
+                //res.status.should.equal(200);
+                // Error key should be false.
+                //res.body.error.should.equal(false);
+                done();
+            });
+    });
+
+});
