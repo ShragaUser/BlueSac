@@ -1,14 +1,15 @@
+const path = require('path');
+const dbHandler = require(path.resolve(__dirname, './Handlers/dbHandler/dbHandler'));
+
 const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
-const path = require('path');
 
 const router = require(path.resolve(__dirname, './routes/router'));
 
 const app = express();
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(logger("dev"));

@@ -7,10 +7,12 @@ const Discussion = require(path.resolve(__dirname, './models/discussionModel'));
 
 let dbHandler = {};
 
-dbHandler.create = create;
 dbHandler.read = read;
+dbHandler.create = create;
 dbHandler.update = update;
+dbHandler.connect = connect;
 dbHandler.deleteMany = deleteMany;
+dbHandler.closeConnection = closeConnection;
 
 const MODELS = {
     "Role": Role,
@@ -18,11 +20,13 @@ const MODELS = {
 };
 
 function connect() {
-    dbHandler.dbConn = mongoose.connect(mongoDB).then(() => {
-        console.log("connected to mongodb")
-    }).catch(err => {
-        console.log(err)
-    });
+    if(!dbHandler.dbConn) {
+        dbHandler.dbConn = mongoose.connect(mongoDB).then(() => {
+            console.log("connected to mongodb")
+        }).catch(err => {
+            console.log(err)
+        });
+    }
 }
 
 function create(obj) {
@@ -59,6 +63,10 @@ function deleteMany(modelName, filter) {
             resolve({status: 200, message: 'docs has been deleted!'});
         })
     })
+}
+
+function closeConnection() {
+    dbHandler.dbConn.close();
 }
 
 connect();
