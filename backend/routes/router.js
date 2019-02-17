@@ -13,24 +13,28 @@ const HANDLERS = {
     "person": personHandler
 };
 
-router.get('/', async (req, res, next) => {
+router.get('/', (req, res, next) => {
     let modelName = utils.getModelName(req.baseUrl);
-    await utils.dispatchHandler(HANDLERS[modelName].read, req, res);
+    utils.errorHandler(utils.dispatchHandler, HANDLERS[modelName].read, req, res);
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', (req, res, next) => {
     let modelName = utils.getModelName(req.baseUrl);
-    await utils.dispatchHandler(HANDLERS[modelName].create, req, res, ['newObj']);
+    utils.errorHandler(utils.dispatchHandler, HANDLERS[modelName].create, req, res, ['newObj']);
 });
 
-router.put('/', async (req, res, next) => {
+router.put('/', (req, res, next) => {
     let modelName = utils.getModelName(req.baseUrl);
-    await utils.dispatchHandler(HANDLERS[modelName].update, req, res, ['update', 'filter']);
+    utils.errorHandler(utils.dispatchHandler, HANDLERS[modelName].update, req, res, ['update', 'filter']);
 });
 
-router.delete('/', async (req, res, next) => {
+router.delete('/', (req, res, next) => {
     let modelName = utils.getModelName(req.baseUrl);
-    await utils.dispatchHandler(HANDLERS[modelName].deleteMany, req, res);
+    utils.errorHandler(utils.dispatchHandler, HANDLERS[modelName].deleteMany, req, res);
+});
+
+router.get('/calculate', (req, res, next) => {
+
 });
 
 module.exports = router;

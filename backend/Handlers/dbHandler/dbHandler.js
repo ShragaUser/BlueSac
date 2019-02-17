@@ -2,7 +2,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 const Role = require(path.resolve(__dirname, './models/roleModel'));
-const { mongoDB } = require(path.resolve(__dirname, '../../config/config'));
+const { dbUrl } = require(path.resolve(__dirname, '../../config/config'));
 const Discussion = require(path.resolve(__dirname, './models/discussionModel'));
 
 let dbHandler = {};
@@ -19,9 +19,9 @@ const MODELS = {
     "Discussion": Discussion
 };
 
-function connect() {
+async function connect() {
     if(!dbHandler.dbConn) {
-        dbHandler.dbConn = mongoose.connect(mongoDB).then(() => {
+        dbHandler.dbConn = await mongoose.connect(dbUrl, { useNewUrlParser: true }).then(() => {
             console.log("connected to mongodb")
         }).catch(err => {
             console.log(err)
@@ -66,7 +66,10 @@ function deleteMany(modelName, filter) {
 }
 
 function closeConnection() {
-    dbHandler.dbConn.close();
+    mongoose.disconnect().then(() => {
+        console.log("connection to db has been closed!");
+        dbHandler.dbConn = undefined;
+    });
 }
 
 connect();

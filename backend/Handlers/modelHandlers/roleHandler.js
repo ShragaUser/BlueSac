@@ -12,30 +12,21 @@ roleHandler.create = create;
 roleHandler.update = update;
 roleHandler.deleteMany = deleteMany;
 
-async function create(body) {
-    let newRole = new Role(body.newObj);
-    let res = await dbHandler.create(newRole);
-    return res;
+async function create({newObj}) {
+    let newRole = new Role(newObj);
+    return await dbHandler.create(newRole);
 }
 
-async function read(body) {
-    let filter = {};
-    if(body.filter)
-        filter = body.filter;
-    return await dbHandler.read(MODEL_NAME, filter);
+async function read({filter}) {
+    return await dbHandler.read(MODEL_NAME, filter || {});
 }
 
-async function update(body) {
-    let update = body.update;
-    let filter = body.filter;
+async function update({update, filter}) {
     return await dbHandler.update(MODEL_NAME, filter, update);
 }
 
-async function deleteMany(body) {
-    let filter = {};
-    if(body.filter)
-        filter = body.filter;
-    return await dbHandler.deleteMany(MODEL_NAME, filter);
+async function deleteMany({filter}) {
+    return await dbHandler.deleteMany(MODEL_NAME, filter || {});
 }
 
 module.exports = roleHandler;
