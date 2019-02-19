@@ -28,7 +28,7 @@ const theme = createMuiTheme({
 
 const styles = style => ({
     appBar: {
-        zIndex: style.zIndex.drawer + 1
+        zIndex: style.zIndex.drawer + 1,
     },
     toolbar: style.mixins.toolbar
 });
