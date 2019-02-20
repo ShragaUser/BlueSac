@@ -2,27 +2,31 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 const Role = require(path.resolve(__dirname, './models/roleModel'));
-const { mongoDB } = require(path.resolve(__dirname, '../../config/config'));
+const { dbUrl } = require(path.resolve(__dirname, '../../config/config'));
 const Discussion = require(path.resolve(__dirname, './models/discussionModel'));
 
 let dbHandler = {};
 
-dbHandler.create = create;
 dbHandler.read = read;
+dbHandler.create = create;
 dbHandler.update = update;
+dbHandler.connect = connect;
 dbHandler.deleteMany = deleteMany;
+dbHandler.closeConnection = closeConnection;
 
 const MODELS = {
     "Role": Role,
     "Discussion": Discussion
 };
 
-function connect() {
-    dbHandler.dbConn = mongoose.connect(mongoDB).then(() => {
-        console.log("connected to mongodb")
-    }).catch(err => {
-        console.log(err)
-    });
+async function connect() {
+    if(!dbHandler.dbConn) {
+        dbHandler.dbConn = mongoose.connect(dbUrl, { useNewUrlParser: true }).then(() => {
+            console.log("connected to mongodb")
+        }).catch(err => {
+            console.log(err)
+        });
+    }
 }
 
 function create(obj) {
@@ -47,7 +51,7 @@ function update(modelName, filter, obj) {
     return new Promise((resolve, reject) => {
         MODELS[modelName].updateMany(filter, obj, (err, docs) => {
             if (err) resolve({status: 500, message: err});
-            resolve({status: 200, message: docs});
+            resolve({status: 200, message: 'docs has been updated!'});
         })
     })
 }
@@ -59,6 +63,13 @@ function deleteMany(modelName, filter) {
             resolve({status: 200, message: 'docs has been deleted!'});
         })
     })
+}
+
+function closeConnection() {
+    mongoose.disconnect().then(() => {
+        console.log("connection to db has been closed!");
+        dbHandler.dbConn = undefined;
+    });
 }
 
 connect();
