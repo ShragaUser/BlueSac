@@ -21,7 +21,7 @@ const MODELS = {
 
 async function connect() {
     if(!dbHandler.dbConn) {
-        dbHandler.dbConn = await mongoose.connect(dbUrl, { useNewUrlParser: true }).then(() => {
+        dbHandler.dbConn = mongoose.connect(dbUrl, { useNewUrlParser: true }).then(() => {
             console.log("connected to mongodb")
         }).catch(err => {
             console.log(err)
