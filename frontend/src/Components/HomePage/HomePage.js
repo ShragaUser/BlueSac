@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     root: {
@@ -16,7 +14,7 @@ function HomePage(props) {
     const { classes } = props;
 
     return (
-        <Paper className={classes.root} elevation={1}>>
+        <div>
             <div>Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home </div>
             <div>Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home </div>
             <div>Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home </div>
@@ -28,7 +26,7 @@ function HomePage(props) {
             <div>Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home </div>
             <div>Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home </div>
             <div>Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home Home </div>
-        </Paper>
+        </div>
     )
 }
 
