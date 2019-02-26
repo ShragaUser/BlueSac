@@ -13,7 +13,7 @@ const drawerWidth = 240;
 
 const styles = theme => ({
     root: {
-        display: 'flex',
+        // display: 'flex',
     },
     drawer: {
         width: drawerWidth,
@@ -29,8 +29,8 @@ const styles = theme => ({
         padding: theme.spacing.unit * 3,
     },
     toolbar: theme.mixins.toolbar,
-    Link: {
-
+    listItem: {
+        display: 'flex',
     }
 });
 
@@ -47,9 +47,9 @@ class SideBar extends Component {
     getListItems() {
         return (
             [
-                {id: 0, url: '/', text: 'home page'},
-                {id: 1, url: '/discussionPage', text: 'discussion page'},
-                {id: 2, url: '/settingsPage', text: 'settings'}
+                {id: 0, url: '/', text: 'דף בית'},
+                {id: 1, url: '/discussionPage', text: 'דש"בים'},
+                {id: 2, url: '/settingsPage', text: 'הגדרות'}
             ]
         )
     }
@@ -80,8 +80,10 @@ class SideBar extends Component {
                                 component={Link}
                                 to={item.url}
                                 selected={this.state.selected === item.id}>
-                                <ListItemIcon><InboxIcon/></ListItemIcon>
-                                <ListItemText primary={item.text}/>
+                                <div className={classes.listItem}>
+                                    <ListItemIcon><InboxIcon/></ListItemIcon>
+                                    <ListItemText primary={item.text}/>
+                                </div>
                             </ListItem>
                         )}
                     </List>
