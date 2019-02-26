@@ -22,7 +22,7 @@ const styles = theme => ({
     drawerPaper: {
         width: drawerWidth,
         borderWidth: 0,
-        backgroundColor: '#f2f2f2'
+        backgroundColor: theme.palette.background.default
     },
     content: {
         flexGrow: 1,
@@ -44,19 +44,17 @@ class SideBar extends Component {
         }
     }
 
-    getListItems() {
-        return (
-            [
-                {id: 0, url: '/', text: 'דף בית'},
-                {id: 1, url: '/discussionPage', text: 'דש"בים'},
-                {id: 2, url: '/settingsPage', text: 'הגדרות'}
-            ]
-        )
-    }
+    getListItems = () => (
+        [
+            {id: 0, url: '/', text: 'דף בית'},
+            {id: 1, url: '/discussionPage', text: 'דש"בים'},
+            {id: 2, url: '/settingsPage', text: 'הגדרות'}
+        ]
+    );
 
-    handleClick(id, event) {
+    handleClick = (id, event) => {
         this.setState({ selected: id })
-    }
+    };
 
     render() {
         const { classes } = this.props;

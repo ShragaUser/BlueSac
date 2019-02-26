@@ -5,15 +5,17 @@ import HomePage from "../HomePage/HomePage";
 import DiscussionPage from "../DiscussionPage/DiscussionPage";
 import PropTypes from "prop-types";
 
-const styles = theme => ({
+const styles = theme => {
+    console.log(theme);
+    return ({
     root: {
-        backgroundColor: '#ffffff',
+        backgroundColor: theme.palette.background.paper,
         ...theme.mixins.gutters(),
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit * 2,
         height: '70vh',
     }
-});
+})};
 
 function Footer(props) {
     const { classes } = props;

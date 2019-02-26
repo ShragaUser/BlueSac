@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -26,42 +25,63 @@ const styles = theme => {
             flexGrow: 1,
             flexDirection: 'row'
         },
-        icon: {
-
+        details: {
+            display: 'block',
         }
+
     });
 };
 
-function handleClick() {
+class Panel extends Component {
 
-}
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false,
+            summary: props.summary,
+            details: props.details
+        }
+    }
 
-function Panel(props) {
-    const { classes } = props;
-    return (
-        <ButtonBase onClick={handleClick} className={classes.root}>
-            <ExpansionPanel className={classes.root}>
-                <ExpansionPanelSummary>
-                    <div className={classes.headers}>
-                        <Typography className={classes.heading}>
-                            {props.summary}
+    handleClick = () => {
+        this.setState(prevState => (
+            {isOpen: !prevState.isOpen}
+        ));
+    };
+
+    renderSecondaryHeading = () => (
+        <Typography className={this.props.classes.secondaryHeading}>
+            secondary header
+        </Typography>
+    );
+
+    render() {
+        const { classes } = this.props;
+        return (
+                <ExpansionPanel className={classes.root}>
+                        <ExpansionPanelSummary onClick={this.handleClick}>
+                            <div className={classes.headers}>
+                                <Typography className={classes.heading}>
+                                    {this.state.summary}
+                                </Typography>
+                                { this.state.isOpen ? null : this.renderSecondaryHeading() }
+                            </div>
+                            <div className={classes.icon}>
+                                <ExpandMoreIcon />
+                            </div>
+                        </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <div className={classes.details}>
+                        { this.state.isOpen ? this.renderSecondaryHeading() : null }
+                        <Typography>
+                            {this.state.details}
                         </Typography>
-                        <Typography className={classes.secondaryHeading}>
-                            secondary header
-                        </Typography>
-                    </div>
-                    <div className={classes.icon}>
-                        <ExpandMoreIcon />
-                    </div>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    <Typography>
-                        {props.details}
-                    </Typography>
-                </ExpansionPanelDetails>
-            </ExpansionPanel>
-        </ButtonBase>
-    )
+                        </div>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+        )
+    }
+
 }
 
 Panel.propTypes = {

@@ -7,17 +7,21 @@ import Footer from './Components/Footer/Footer';
 import SideBar from './Components/SideBar/SideBar';
 
 
-const styles = style => ({
+const styles = theme => ({
+    root: {
+        backgroundColor: theme.palette.background.default,
+        height: '100%'
+    },
     footer: {
-        paddingTop: 100
-    }
+        paddingTop: 100,
+    },
 });
 
 class App extends Component {
     render() {
         const { classes } = this.props;
         return (
-          <div>
+          <div className={classes.root}>
               <Grid container justify="center" alignItems="center">
                   <Grid item xs={12}>
                       <Header/>
