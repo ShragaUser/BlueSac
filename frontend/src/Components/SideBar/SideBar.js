@@ -96,4 +96,3 @@ SideBar.propTypes = {
 };
 
 export default withStyles(styles)(SideBar);
-

@@ -1,37 +1,87 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
-const styles = theme => {
-    return({
+const styles = theme => ({
+    root: {
 
-    })
-};
+    },
+    dialog: {
+        fullWidth: true,
+        maxWidth: 'md'
+    }
+});
 
 class AddDiscussion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false
+            isOpen: true
         };
     }
 
-    handleClick = () => {
-        this.setState(prevState => (
-            { isOpen: !prevState.isOpen }
-        ))
+    handleOpen = () => {
+        this.setState({ isOpen: true });
+    };
+
+    handleClose = () => {
+        this.setState({ isOpen: false });
     };
 
     render() {
+        const { classes } = this.props;
         return (
-            <Dialog
-                open={true}
-                onClose={this.handleClose}
-                aria-labelledby="form-dialog-title"
-            >
+            <div>
+                <Fab color="primary" aria-label="Add" onClick={this.handleOpen}>
+                    <AddIcon />
+                </Fab>
+                <Dialog
+                    open={this.state.isOpen}
+                    onClose={this.handleClose}
+                    aria-labelledby="form-dialog-title"
+                    className={classes.dialog}
+                    maxWidth='sm'
+                    fullWidth={true}
+                >
+                    <DialogTitle id="form-dialog-title">יצירת דש"ב</DialogTitle>
+                    <Divider />
+                    <DialogContent>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            label='שם דש"ב'
+                            fullWidth
+                        />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            label='תאריך התחלה'
+                            fullWidth
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">
+                            צור
+                        </Button>
+                        <Button onClick={this.handleClose} color="secondary">
+                            ביטול
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
 
-            </Dialog>
         )
     }
 }

@@ -34,9 +34,7 @@ function Footer(props) {
                     <Route component={HomePage}/>
                 </Switch>
             </Paper>
-            <Fab color="primary" aria-label="Add" className={classes.fab}>
-                <AddIcon />
-            </Fab>
+            <AddDiscussion />
         </div>
 
     )

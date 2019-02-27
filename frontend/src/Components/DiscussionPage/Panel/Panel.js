@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Divider from '@material-ui/core/Divider';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -38,7 +39,8 @@ class Panel extends Component {
         super(props);
         this.state = {
             isOpen: false,
-            summary: props.summary,
+            name: props.name,
+            date: props.date,
             details: props.details
         }
     }
@@ -51,7 +53,7 @@ class Panel extends Component {
 
     renderSecondaryHeading = () => (
         <Typography className={this.props.classes.secondaryHeading}>
-            secondary header
+            {this.state.date}
         </Typography>
     );
 
@@ -59,20 +61,23 @@ class Panel extends Component {
         const { classes } = this.props;
         return (
                 <ExpansionPanel className={classes.root}>
-                        <ExpansionPanelSummary onClick={this.handleClick}>
-                            <div className={classes.headers}>
-                                <Typography className={classes.heading}>
-                                    {this.state.summary}
-                                </Typography>
-                                { this.state.isOpen ? null : this.renderSecondaryHeading() }
-                            </div>
-                            <div className={classes.icon}>
-                                <ExpandMoreIcon />
-                            </div>
-                        </ExpansionPanelSummary>
+                    <ExpansionPanelSummary onClick={this.handleClick}>
+                        <div className={classes.headers}>
+                            <Typography className={classes.heading}>
+                                {this.state.name}
+                            </Typography>
+                            { this.state.isOpen ? null : this.renderSecondaryHeading() }
+                        </div>
+                        <div className={classes.icon}>
+                            <ExpandMoreIcon />
+                        </div>
+                    </ExpansionPanelSummary>
+                    <Divider />
                     <ExpansionPanelDetails>
                         <div className={classes.details}>
-                        { this.state.isOpen ? this.renderSecondaryHeading() : null }
+                            <Typography className={classes.secondaryHeading}>
+                                {this.state.date}
+                            </Typography>
                         <Typography>
                             {this.state.details}
                         </Typography>

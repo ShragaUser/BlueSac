@@ -5,9 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Panel from './Panel/Panel';
 
 let panels = [
-    {summary: 'discussion 1', details: 'blasfsdfnbashdbfkjasdfksakdfbskadfbkjsafd'},
-    {summary: 'discussion 1', details: 'blasfsdfnbashdbfkjasdfksakdfbskadfbkjsafd'},
-    {summary: 'discussion 1', details: 'blasfsdfnbashdbfkjasdfksakdfbskadfbkjsafd'}
+    {name: 'שם דש"ב', date: '20/01/2018', details: 'adsadsadsadsadasdsad'},
+    {name: 'שם דש"ב', date: '20/01/2018', details: 'adasdasdasdasdsadasd'},
+    {name: 'שם דש"ב', date: '20/01/2018', details: 'adasdadasdsadsadsads'}
 ];
 
 const styles = {
@@ -21,7 +21,7 @@ function DiscussionPage(props) {
     return (
         <div className={classes.root}>
             {panels.map(panel =>
-                <Panel summary={panel.summary} details={panel.details}/>
+                <Panel name={panel.name} date={panel.date} details={panel.details}/>
             )}
         </div>
     )
