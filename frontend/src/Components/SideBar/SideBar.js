@@ -48,7 +48,7 @@ class SideBar extends Component {
         [
             {id: 0, url: '/', text: 'דף בית'},
             {id: 1, url: '/discussionPage', text: 'דש"בים'},
-            {id: 2, url: '/settingsPage', text: 'הגדרות'}
+            {id: 2, url: '/settingsPage', text: 'הגדרות'},
         ]
     );
 

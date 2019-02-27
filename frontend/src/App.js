@@ -29,7 +29,7 @@ class App extends Component {
                   <Grid item xs={1}>
                       <SideBar/>
                   </Grid>
-                  <Grid item xs={9} className={classes.footer}>
+                  <Grid item xs={8} className={classes.footer}>
                       <Footer/>
                   </Grid>
               </Grid>
