@@ -22,6 +22,7 @@ const theme = createMuiTheme({
             paper: '#ffffff'
         },
     },
+    direction: "rtl",
 });
 
 ReactDOM.render((

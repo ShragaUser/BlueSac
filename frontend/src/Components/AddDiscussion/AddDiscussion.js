@@ -10,7 +10,6 @@ import { withStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 
 const styles = theme => ({
     root: {
@@ -18,8 +17,13 @@ const styles = theme => ({
     },
     dialog: {
         fullWidth: true,
-        maxWidth: 'md'
+        maxWidth: 'md',
+    },
+    inputLabel: {
+        direction: "rtl",
+        dir: "rtl"
     }
+
 });
 
 class AddDiscussion extends Component {
@@ -57,18 +61,15 @@ class AddDiscussion extends Component {
                     <Divider />
                     <DialogContent>
                         <TextField
-                            autoFocus
-                            margin="dense"
                             id="name"
-                            label='שם דש"ב'
+                            placeholder='שם דש"ב'
                             fullWidth
                         />
                         <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label='תאריך התחלה'
+                            id="date"
+                            placeholder='תאריך'
                             fullWidth
+                            style={{paddingTop: 10}}
                         />
                     </DialogContent>
                     <DialogActions>

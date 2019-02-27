@@ -61,7 +61,7 @@ class SideBar extends Component {
         return (
             <div className={classes.root}>
                 <Drawer
-                    anchor="right"
+                    anchor="left"
                     className={classes.drawer}
                     variant="permanent"
                     classes={{
