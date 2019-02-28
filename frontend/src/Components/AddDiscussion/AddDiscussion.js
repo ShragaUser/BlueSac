@@ -15,22 +15,22 @@ const styles = theme => ({
     root: {
 
     },
-    dialog: {
-        fullWidth: true,
-        maxWidth: 'md',
+    title: {
+        backgroundColor: theme.palette.background.default
     },
-    inputLabel: {
-        direction: "rtl",
-        dir: "rtl"
+    textField: {
+        paddingTop: 10
     }
-
 });
 
 class AddDiscussion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: true
+            isOpen: true,
+            name: "",
+            date: "",
+            people: []
         };
     }
 
@@ -42,11 +42,15 @@ class AddDiscussion extends Component {
         this.setState({ isOpen: false });
     };
 
+    handleCreate = () => {
+        // TODO: use axios to send http request to the backend
+    };
+
     render() {
         const { classes } = this.props;
         return (
             <div>
-                <Fab color="primary" aria-label="Add" onClick={this.handleOpen}>
+                <Fab color="secondary" aria-label="Add" onClick={this.handleOpen}>
                     <AddIcon />
                 </Fab>
                 <Dialog
@@ -57,23 +61,31 @@ class AddDiscussion extends Component {
                     maxWidth='sm'
                     fullWidth={true}
                 >
-                    <DialogTitle id="form-dialog-title">יצירת דש"ב</DialogTitle>
+                    <DialogTitle
+                        id="form-dialog-title"
+                        className={classes.title}
+                    >
+                        יצירת דש"ב
+                    </DialogTitle>
                     <Divider />
                     <DialogContent>
                         <TextField
                             id="name"
                             placeholder='שם דש"ב'
                             fullWidth
+                            className={classes.textField}
                         />
                         <TextField
                             id="date"
                             placeholder='תאריך'
                             fullWidth
-                            style={{paddingTop: 10}}
+                            className={classes.textField}
                         />
+
                     </DialogContent>
+                    <Divider/>
                     <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={this.handleCreate} color="primary">
                             צור
                         </Button>
                         <Button onClick={this.handleClose} color="secondary">

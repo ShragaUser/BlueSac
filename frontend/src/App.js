@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import SideBar from './Components/SideBar/SideBar';
+import AddDiscussion from './Components/AddDiscussion/AddDiscussion';
 
 
 const styles = theme => ({
@@ -22,15 +23,25 @@ class App extends Component {
         const { classes } = this.props;
         return (
           <div className={classes.root}>
-              <Grid container justify="center" alignItems="center">
+              <Grid container justify="center" alignItems="center" direction="row">
                   <Grid item xs={12}>
                       <Header/>
                   </Grid>
-                  <Grid item xs={1}>
+                  <Grid item xs={2}>
                       <SideBar/>
                   </Grid>
                   <Grid item xs={8} className={classes.footer}>
                       <Footer/>
+                  </Grid>
+              </Grid>
+              <Grid
+                  container
+                  direction="row"
+                  justify="flex-end"
+                  alignItems="center"
+              >
+                  <Grid item xs={0} style={{marginLeft: 30}}>
+                      <AddDiscussion/>
                   </Grid>
               </Grid>
           </div>
