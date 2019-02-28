@@ -6,20 +6,33 @@ import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+
+import StepperBar from './StepperBar/StepperBar';
+import nameIcon from '../../icons/briefing.svg';
 
 const styles = theme => ({
     root: {
 
     },
     title: {
-        backgroundColor: theme.palette.background.default
+        backgroundColor: theme.palette.background.default,
+        width: '100%'
     },
     textField: {
         paddingTop: 10
+    },
+    createButton: {
+        color: '#2196f3'
+    },
+    cancelButton: {
+        color: theme.palette.common.black
+    },
+    dialog: {
+        width: '100%'
     }
 });
 
@@ -61,37 +74,15 @@ class AddDiscussion extends Component {
                     maxWidth='sm'
                     fullWidth={true}
                 >
-                    <DialogTitle
-                        id="form-dialog-title"
-                        className={classes.title}
-                    >
-                        יצירת דש"ב
-                    </DialogTitle>
-                    <Divider />
-                    <DialogContent>
-                        <TextField
-                            id="name"
-                            placeholder='שם דש"ב'
-                            fullWidth
-                            className={classes.textField}
-                        />
-                        <TextField
-                            id="date"
-                            placeholder='תאריך'
-                            fullWidth
-                            className={classes.textField}
-                        />
-
+                    <DialogContent className={classes.title}>
+                        <div>
+                            <Typography variant='h6'>
+                                יצירת דש"ב
+                            </Typography>
+                            <StepperBar/>
+                        </div>
                     </DialogContent>
                     <Divider/>
-                    <DialogActions>
-                        <Button onClick={this.handleCreate} color="primary">
-                            צור
-                        </Button>
-                        <Button onClick={this.handleClose} color="secondary">
-                            ביטול
-                        </Button>
-                    </DialogActions>
                 </Dialog>
             </div>
 

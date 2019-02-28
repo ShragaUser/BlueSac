@@ -10,7 +10,6 @@ import AddDiscussion from '../AddDiscussion/AddDiscussion';
 import DiscussionPage from "../DiscussionPage/DiscussionPage";
 
 const styles = theme => {
-    console.log(theme);
     return ({
         root: {
             display: ''
