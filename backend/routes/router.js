@@ -4,8 +4,8 @@ const router = express.Router();
 
 const utils = require(path.resolve(__dirname, '../utils/utils.js'));
 const roleHandler = require(path.resolve(__dirname, '../Handlers/modelHandlers/roleHandler'));
-const personHandler = require(path.resolve(__dirname, '../Handlers/modelHandlers/roleHandler'));
-const discussionHandler = require(path.resolve(__dirname, '../Handlers/modelHandlers/roleHandler'));
+const personHandler = require(path.resolve(__dirname, '../Handlers/modelHandlers/personHandler'));
+const discussionHandler = require(path.resolve(__dirname, '../Handlers/modelHandlers/discussionHandler'));
 
 const HANDLERS = {
     "role": roleHandler,

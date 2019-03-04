@@ -4,8 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+
+import RolesStep from './RolesStep/RolesStep';
+import PeopleStep from './PeopleStep/PeopleStep';
+import DiscussionStep from './DiscussionStep/DiscussionStep';
 
 const styles = theme => ({
     root: {
@@ -31,17 +33,39 @@ function getSteps() {
 }
 
 class StepperBar extends Component {
-    state = {
-        activeStep: 1,
-        discussion: {},
-        roles: [],
-        people: []
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            activeStep: 0,
+            discussion: {},
+            roles: [],
+            people: []
+        };
+    }
+
+    changeState = obj => {
+        switch (this.state.activeStep) {
+            case 0:
+                return this.setState({discussion: obj});
+            case 1:
+                return this.setState({roles: obj});
+            case 2:
+                this.setState({people: obj});
+                this.handleCreate();
+                break;
+            default:
+                return 'Unknown step';
+        }
     };
 
-    handleNext = () => {
-        this.setState(prevState => ({
-            activeStep: prevState.activeStep + 1,
-        }));
+    handleNext = async (obj) => {
+        await this.changeState(obj);
+        if(this.state.activeStep <= 2) {
+            this.setState(prevState => ({
+                activeStep: prevState.activeStep + 1,
+            }));
+        }
     };
 
     handleBack = () => {
@@ -51,87 +75,19 @@ class StepperBar extends Component {
     };
 
     handleCreate = () => {
-        alert("created successfully");
+
     };
-
-    firstStep = () => (
-        <div>
-            <TextField
-                id="name"
-                placeholder='שם דש"ב'
-                fullWidth
-            />
-            <TextField
-                id="date"
-                placeholder='תאריך'
-                fullWidth
-            />
-            <div className={this.props.classes.buttons}>
-                <Button onClick={this.handleNext}>
-                    המשך
-                </Button>
-                <Button>
-                    ביטול
-                </Button>
-            </div>
-        </div>
-    );
-
-    secondStepFields = [
-        {id: 'name', placeHolder: 'שם'},
-        {id: 'unit', placeHolder: 'יחידה'},
-        {id: 'rank', placeHolder: 'דרגה'},
-        {id: 'description', placeHolder: 'תיאור'},
-        {id: 'requirements', placeHolder: 'דרישות'},
-        {id: 'skills', placeHolder: 'כישורים'},
-        {id: 'approved_by', placeHolder: 'אושר ע"י'},
-        {id: 'approved_date', placeHolder: 'תאריך אישור'}
-    ];
-
-    secondStep = () => (
-        <div>
-            <div>
-                {this.secondStepFields.map((field) => {
-                    return (<TextField
-                        id={field.id}
-                        placeholder={field.placeHolder}
-                        fullWidth
-                    />)
-                })}
-            </div>
-            <Button onClick={this.handleNext}>
-                המשך
-            </Button>
-            <Button onClick={this.handleBack}>
-                חזור
-            </Button>
-        </div>
-    );
-
-    thirdStep = () => (
-        <div>
-            <Button onClick={this.handleCreate}>
-                צור
-            </Button>
-            <Button onClick={this.handleBack}>
-                חזור
-            </Button>
-            <Button>
-                ביטול
-            </Button>
-        </div>
-    );
 
     getStepContent = (step) => {
         switch (step) {
             case 0:
-                return this.firstStep();
+                return <DiscussionStep handleNext={this.handleNext}/>;
             case 1:
-                return this.secondStep();
+                return <RolesStep handleNext={this.handleNext} handleBack={this.handleBack}/>;
             case 2:
-                return this.thirdStep();
+                return <PeopleStep handleBack={this.handleBack} handleNext={this.handleNext}/>;
             default:
-                return 'Unknown step';
+                return 'נוצר בהצלחה!';
         }
     };
 

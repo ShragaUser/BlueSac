@@ -24,15 +24,15 @@ class DiscussionStep extends Component {
     };
 
     handleClick = () => {
-
-        this.props.handleNext();
+        this.props.handleNext(this.state.discussion);
     };
 
     render() {
         return (
             <div>
-                {this.state.fields.map(field => (
+                {this.state.fields.map((field, index) => (
                     <TextField
+                        key={index}
                         id={field.id}
                         placeholder={field.placeHolder}
                         onChange={this.handleChange}

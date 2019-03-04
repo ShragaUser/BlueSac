@@ -20,8 +20,8 @@ function DiscussionPage(props) {
     const { classes } = props;
     return (
         <div className={classes.root}>
-            {panels.map(panel =>
-                <Panel name={panel.name} date={panel.date} details={panel.details}/>
+            {panels.map((panel, index) =>
+                <Panel key={index} name={panel.name} date={panel.date} details={panel.details}/>
             )}
         </div>
     )

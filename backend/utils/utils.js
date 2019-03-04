@@ -18,7 +18,7 @@ async function dispatchHandler(func, {body}, res, params = []) {
         res.status(412).json({ error: 'Bad input' });
     else {
         let response = await func(body);
-        res.status(response.status).json(response.message);
+        res.status(response.status).json(response);
     }
 }
 

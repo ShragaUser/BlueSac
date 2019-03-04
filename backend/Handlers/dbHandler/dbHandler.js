@@ -2,6 +2,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 const Role = require(path.resolve(__dirname, './models/roleModel'));
+const Person = require(path.resolve(__dirname, './models/personModel'));
 const { dbUrl } = require(path.resolve(__dirname, '../../config/config'));
 const Discussion = require(path.resolve(__dirname, './models/discussionModel'));
 
@@ -16,7 +17,8 @@ dbHandler.closeConnection = closeConnection;
 
 const MODELS = {
     "Role": Role,
-    "Discussion": Discussion
+    "Discussion": Discussion,
+    "Person": Person
 };
 
 async function connect() {
@@ -31,9 +33,9 @@ async function connect() {
 
 function create(obj) {
     return new Promise((resolve, reject) => {
-        obj.save(err => {
+        obj.save((err, doc) => {
             if(err) resolve({status: 500, message: err});
-            else resolve({status: 200, message: 'object has been saved to db'});
+            else resolve({status: 200, message: 'object has been saved to db', doc: doc});
         });
     });
 }
