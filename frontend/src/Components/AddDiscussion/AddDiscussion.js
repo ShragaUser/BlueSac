@@ -3,16 +3,12 @@ import PropTypes from 'prop-types';
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Dialog from '@material-ui/core/Dialog';
-import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
 import StepperBar from './StepperBar/StepperBar';
-import nameIcon from '../../icons/briefing.svg';
 
 const styles = theme => ({
     root: {
@@ -55,10 +51,6 @@ class AddDiscussion extends Component {
         this.setState({ isOpen: false });
     };
 
-    handleCreate = () => {
-        // TODO: use axios to send http request to the backend
-    };
-
     render() {
         const { classes } = this.props;
         return (
@@ -79,7 +71,7 @@ class AddDiscussion extends Component {
                             <Typography variant='h6'>
                                 יצירת דש"ב
                             </Typography>
-                            <StepperBar/>
+                            <StepperBar close={this.handleClose}/>
                         </div>
                     </DialogContent>
                     <Divider/>

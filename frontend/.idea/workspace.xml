@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fcefbea0-47f6-40d1-b830-3fce2b08b7a7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/PeopleStep/PeopleStep.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/RolesStep/RolesStep.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/Handlers/dbHandler/dbHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/Handlers/dbHandler/dbHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/routes/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/routes/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/utils/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/DiscussionStep/DiscussionStep.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/DiscussionStep/DiscussionStep.js" afterDir="false" />
+    <list default="true" id="fcefbea0-47f6-40d1-b830-3fce2b08b7a7" name="Default Changelist" comment="so i can work from another pc.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/AddDiscussion/AddDiscussion.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AddDiscussion/AddDiscussion.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/StepperBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/StepperBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/DiscussionPage/DiscussionPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/DiscussionPage/DiscussionPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Footer/Footer.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +31,7 @@
           <entry key="css" value="3" />
           <entry key="html" value="3" />
           <entry key="ico" value="1" />
-          <entry key="js" value="45" />
+          <entry key="js" value="47" />
           <entry key="json" value="3" />
           <entry key="md" value="1" />
           <entry key="svg" value="3" />
@@ -47,7 +43,7 @@
           <entry key="HTML" value="3" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="45" />
+          <entry key="JavaScript" value="47" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="3" />
         </counts>
@@ -55,14 +51,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="81" />
-          <entry key="js" value="8092" />
+          <entry key="js" value="8514" />
           <entry key="txt" value="358" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="81" />
-          <entry key="JavaScript" value="8092" />
+          <entry key="JavaScript" value="8514" />
           <entry key="PLAIN_TEXT" value="358" />
         </counts>
       </usages-collector>
@@ -90,20 +86,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/AddDiscussion.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1540">
-              <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/StepperBar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="87" column="91" selection-start-line="87" selection-start-column="91" selection-end-line="87" selection-end-column="91" />
+            <state relative-caret-position="440">
+              <caret line="73" column="63" selection-start-line="73" selection-start-column="63" selection-end-line="73" selection-end-column="63" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -112,10 +96,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/StepperBar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="86" column="92" selection-start-line="86" selection-start-column="92" selection-end-line="86" selection-end-column="92" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Footer/Footer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-442">
+              <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/PeopleStep/PeopleStep.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+            <state relative-caret-position="342">
+              <caret line="40" column="37" lean-forward="true" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -138,8 +143,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/DiscussionStep/DiscussionStep.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+            <state relative-caret-position="396">
+              <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -167,6 +184,7 @@
       <find>.map</find>
       <find>setState</find>
       <find>Role</find>
+      <find>xs={</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -181,21 +199,21 @@
         <option value="$PROJECT_DIR$/src/SideBar/SideBar.js" />
         <option value="$PROJECT_DIR$/src/Header/Header.js" />
         <option value="$PROJECT_DIR$/src/Components/Header/Header.js" />
-        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/Components/DiscussionPage/Panel/Panel.js" />
         <option value="$PROJECT_DIR$/src/Components/SideBar/SideBar.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/src/Components/Footer/Footer.js" />
         <option value="$PROJECT_DIR$/src/Components/AddDiscussion/Stepper/Stepper.js" />
         <option value="$PROJECT_DIR$/src/Components/AddDiscussion/Stepper/StepperBar.js" />
-        <option value="$PROJECT_DIR$/src/Components/AddDiscussion/AddDiscussion.js" />
         <option value="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/FirstStep/FirstStep.js" />
         <option value="$PROJECT_DIR$/src/Components/DiscussionPage/DiscussionPage.js" />
-        <option value="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/DiscussionStep/DiscussionStep.js" />
         <option value="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/RolesStep/RolesStep.js" />
-        <option value="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/StepperBar.js" />
         <option value="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/PeopleStep/PeopleStep.js" />
+        <option value="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/DiscussionStep/DiscussionStep.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/Components/Footer/Footer.js" />
+        <option value="$PROJECT_DIR$/src/Components/AddDiscussion/AddDiscussion.js" />
+        <option value="$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/StepperBar.js" />
       </list>
     </option>
   </component>
@@ -280,46 +298,7 @@
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Components" type="462c0819:PsiDirectoryNode" />
-              <item name="AddDiscussion" type="462c0819:PsiDirectoryNode" />
-              <item name="StepperBar" type="462c0819:PsiDirectoryNode" />
-              <item name="PeopleStep" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Components" type="462c0819:PsiDirectoryNode" />
-              <item name="AddDiscussion" type="462c0819:PsiDirectoryNode" />
-              <item name="StepperBar" type="462c0819:PsiDirectoryNode" />
-              <item name="RolesStep" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Components" type="462c0819:PsiDirectoryNode" />
               <item name="Footer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Components" type="462c0819:PsiDirectoryNode" />
-              <item name="Header" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Components" type="462c0819:PsiDirectoryNode" />
-              <item name="HomePage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Components" type="462c0819:PsiDirectoryNode" />
-              <item name="SideBar" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -366,7 +345,7 @@
       <workItem from="1550482183752" duration="38575000" />
       <workItem from="1551343543924" duration="12745000" />
       <workItem from="1551603035209" duration="15314000" />
-      <workItem from="1551699258373" duration="3966000" />
+      <workItem from="1551699258373" duration="8290000" />
     </task>
     <task id="LOCAL-00001" summary="so i can work from another computer.">
       <created>1550583074083</created>
@@ -403,17 +382,23 @@
       <option name="project" value="LOCAL" />
       <updated>1551621663792</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="so i can work from another pc.">
+      <created>1551706487258</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1551706487258</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70880000" />
+    <option name="totallyTimeSpent" value="75204000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17228661" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17228661" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -425,7 +410,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -490,6 +475,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -503,29 +492,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/serviceWorker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Footer/Footer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-264">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -544,6 +516,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -567,10 +542,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/AddDiscussion.js">
+    <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1540">
-          <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+        <state relative-caret-position="396">
+          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -579,8 +554,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/DiscussionStep/DiscussionStep.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+        <state relative-caret-position="396">
+          <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -597,20 +572,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/StepperBar.js">
+    <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/PeopleStep/PeopleStep.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="87" column="91" selection-start-line="87" selection-start-column="91" selection-end-line="87" selection-end-column="91" />
+        <state relative-caret-position="342">
+          <caret line="40" column="37" lean-forward="true" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/PeopleStep/PeopleStep.js">
+    <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/AddDiscussion.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+        <state relative-caret-position="440">
+          <caret line="73" column="63" selection-start-line="73" selection-start-column="63" selection-end-line="73" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Footer/Footer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-442">
+          <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/AddDiscussion/StepperBar/StepperBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="86" column="92" selection-start-line="86" selection-start-column="92" selection-end-line="86" selection-end-column="92" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>

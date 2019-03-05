@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import { Route, Switch } from "react-router-dom";
 import { withStyles, Paper } from '@material-ui/core';
 
 import HomePage from "../HomePage/HomePage";
-import AddDiscussion from '../AddDiscussion/AddDiscussion';
 import DiscussionPage from "../DiscussionPage/DiscussionPage";
 
 const styles = theme => {
@@ -27,12 +24,12 @@ function Footer(props) {
     const { classes } = props;
     return(
         <div className={classes.root}>
-            <Paper className={classes.paper} elevation={1}>
+            <div elevation={1}>
                 <Switch>
                     <Route path="/discussionPage" component={DiscussionPage}/>
                     <Route component={HomePage}/>
                 </Switch>
-            </Paper>
+            </div>
         </div>
 
     )

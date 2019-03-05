@@ -24,13 +24,13 @@ class App extends Component {
         return (
           <div className={classes.root}>
               <Grid container justify="center" alignItems="center" direction="row">
-                  <Grid item xs={12}>
+                  <Grid item sm={12}>
                       <Header/>
                   </Grid>
-                  <Grid item xs={2}>
+                  <Grid item sm={2}>
                       <SideBar/>
                   </Grid>
-                  <Grid item xs={8} className={classes.footer}>
+                  <Grid item sm={8} className={classes.footer}>
                       <Footer/>
                   </Grid>
               </Grid>
@@ -40,7 +40,7 @@ class App extends Component {
                   justify="flex-end"
                   alignItems="center"
               >
-                  <Grid item xs={0} style={{marginLeft: 30}}>
+                  <Grid item style={{marginLeft: 30}}>
                       <AddDiscussion/>
                   </Grid>
               </Grid>

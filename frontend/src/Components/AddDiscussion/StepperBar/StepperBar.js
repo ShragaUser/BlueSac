@@ -5,13 +5,14 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 
+import axios from 'axios';
+
 import RolesStep from './RolesStep/RolesStep';
 import PeopleStep from './PeopleStep/PeopleStep';
 import DiscussionStep from './DiscussionStep/DiscussionStep';
 
 const styles = theme => ({
     root: {
-
     },
     stepper: {
         backgroundColor: theme.palette.background.default
@@ -61,10 +62,12 @@ class StepperBar extends Component {
 
     handleNext = async (obj) => {
         await this.changeState(obj);
-        if(this.state.activeStep <= 2) {
+        if(this.state.activeStep < 2) {
             this.setState(prevState => ({
                 activeStep: prevState.activeStep + 1,
             }));
+        } else {
+            this.handleCreate();
         }
     };
 
@@ -74,8 +77,14 @@ class StepperBar extends Component {
         }));
     };
 
-    handleCreate = () => {
+    saveToDB = ()=> {
+        // TODO: // axios.post('http://localhost:3001/api/' + url, {'newObj': this.state.people[0]}).then(response => {
+        //             console.log(response);
+        //         })
+    };
 
+    handleCreate = (url = 'person') => {
+        // TODO: // use saveToDB. here i should handle generic way to send data to saveToDB.
     };
 
     getStepContent = (step) => {
