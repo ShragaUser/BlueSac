@@ -29,32 +29,27 @@ const styles = theme => ({
     }
 });
 
-function getSteps() {
-    return ['פרטי דש"ב', 'הוספת תפקידים', 'הוספת אנשים'];
-}
-
 class StepperBar extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             activeStep: 0,
-            discussion: {},
+            people: [],
             roles: [],
-            people: []
+            discussion: {},
         };
     }
 
-    changeState = obj => {
+    changeState = async obj => {
         switch (this.state.activeStep) {
             case 0:
                 return this.setState({discussion: obj});
             case 1:
                 return this.setState({roles: obj});
             case 2:
-                this.setState({people: obj});
-                this.handleCreate();
-                break;
+                await this.setState({people: obj});
+                return this.handleCreate();
             default:
                 return 'Unknown step';
         }
@@ -62,13 +57,9 @@ class StepperBar extends Component {
 
     handleNext = async (obj) => {
         await this.changeState(obj);
-        if(this.state.activeStep < 2) {
-            this.setState(prevState => ({
-                activeStep: prevState.activeStep + 1,
-            }));
-        } else {
-            this.handleCreate();
-        }
+        this.setState(prevState => ({
+            activeStep: prevState.activeStep + 1,
+        }));
     };
 
     handleBack = () => {
@@ -77,14 +68,46 @@ class StepperBar extends Component {
         }));
     };
 
-    saveToDB = ()=> {
-        // TODO: // axios.post('http://localhost:3001/api/' + url, {'newObj': this.state.people[0]}).then(response => {
-        //             console.log(response);
-        //         })
+    getCleanUrl = (url) => {
+        return url.slice(url.lastIndexOf("/") + 1);
     };
 
-    handleCreate = (url = 'person') => {
-        // TODO: // use saveToDB. here i should handle generic way to send data to saveToDB.
+    handleIdInit = (response) => {
+        let url = this.getCleanUrl(response.config.url);
+
+        switch (url) {
+            case ('person'):
+                this.setState({}) // TODO: insert id's of people into this.state.discussion
+        }
+    };
+
+    saveToDB = (url, obj)=> {
+        axios.post('http://localhost:3001/api/' + url, {'newObj': obj}).then(response => {
+            console.log(response)
+        }).catch(error => {
+            console.error(error)
+        })
+    };
+
+    // must be in this order
+    getSteps = () => (
+        [
+            {url: 'person', content: this.state.people, label: 'הוספת אנשים'},
+            {url: 'role', content: this.state.roles, label: 'הוספת תפקיד'},
+            {url: 'discussion', content: this.state.discussion, label: 'יצירת דש"ב'}
+        ]
+    );
+
+    handleCreate = () => {
+        this.getSteps().forEach(step => {
+            if (Array.isArray(step.content)) {
+                step.content.forEach(content => {
+                    this.saveToDB(step.url, content);
+                })
+            } else {
+                this.saveToDB(step.url, step.content);
+            }
+        })
     };
 
     getStepContent = (step) => {
@@ -102,20 +125,20 @@ class StepperBar extends Component {
 
     render() {
         const { classes } = this.props;
-        const steps = getSteps();
+        const steps = this.getSteps().reverse();
         const { activeStep } = this.state;
 
         return (
             <div className={classes.root}>
                 <Stepper activeStep={activeStep} className={classes.stepper}>
-                    {steps.map((label) => {
+                    {steps.map((step) => {
                         const props = {};
                         const labelProps = {};
                         return (
-                            <Step key={label} {...props}>
+                            <Step key={step.label} {...props}>
                                 <StepLabel {...labelProps}>
                                     <div className={classes.label}>
-                                        {label}
+                                        {step.label}
                                         </div>
                                 </StepLabel>
                             </Step>
