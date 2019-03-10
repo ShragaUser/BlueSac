@@ -34,7 +34,7 @@ class StepperBar extends Component {
         super(props);
 
         this.state = {
-            activeStep: 0,
+            activeStep: 1,
             people: [],
             roles: [],
             discussion: {},
@@ -68,18 +68,25 @@ class StepperBar extends Component {
         }));
     };
 
-    getCleanUrl = (url) => {
-        return url.slice(url.lastIndexOf("/") + 1);
-    };
-
-    handleIdInit = (response) => {
-        let url = this.getCleanUrl(response.config.url);
-
-        switch (url) {
-            case ('person'):
-                this.setState({}) // TODO: insert id's of people into this.state.discussion
-        }
-    };
+    // getCleanUrl = (url) => {
+    //     return url.slice(url.lastIndexOf("/") + 1);
+    // };
+    //
+    // handleIdInit = (response) => {
+    //     let url = this.getCleanUrl(response.config.url);
+    //     let discussion = this.state.discussion;
+    //
+    //     switch (url) {
+    //         case ('person'):
+    //             let discussion_people = discussion.discussion_people || [];
+    //             discussion_people.push(response.data.doc._id);
+    //             discussion.discussion_people = discussion_people;
+    //             this.setState({discussion: discussion});
+    //             break;
+    //         case ('role'):
+    //
+    //     }
+    // };
 
     saveToDB = (url, obj)=> {
         axios.post('http://localhost:3001/api/' + url, {'newObj': obj}).then(response => {
@@ -107,7 +114,8 @@ class StepperBar extends Component {
             } else {
                 this.saveToDB(step.url, step.content);
             }
-        })
+        });
+        console.log(this.state);
     };
 
     getStepContent = (step) => {
@@ -117,7 +125,7 @@ class StepperBar extends Component {
             case 1:
                 return <RolesStep handleNext={this.handleNext} handleBack={this.handleBack}/>;
             case 2:
-                return <PeopleStep handleBack={this.handleBack} handleNext={this.handleNext}/>;
+                return <PeopleStep handleBack={this.handleBack} handleNext={this.handleNext} />;
             default:
                 return 'נוצר בהצלחה!';
         }
