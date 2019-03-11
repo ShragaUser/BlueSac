@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import Divider from '@material-ui/core/Divider';
 
 import axios from 'axios';
 
@@ -118,8 +119,8 @@ class StepperBar extends Component {
         console.log(this.state);
     };
 
-    getStepContent = (step) => {
-        switch (step) {
+    getStepContent = () => {
+        switch (this.state.activeStep) {
             case 0:
                 return <DiscussionStep handleNext={this.handleNext}/>;
             case 1:
@@ -153,8 +154,9 @@ class StepperBar extends Component {
                         );
                     })}
                 </Stepper>
+                <Divider />
                 <div className={classes.content}>
-                    {this.getStepContent(this.state.activeStep)}
+                    {this.getStepContent()}
                 </div>
             </div>
         );

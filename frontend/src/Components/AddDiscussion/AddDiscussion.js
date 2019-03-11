@@ -16,7 +16,7 @@ const styles = theme => ({
     },
     title: {
         backgroundColor: theme.palette.background.default,
-        width: '100%'
+
     },
     textField: {
         paddingTop: 10
@@ -27,9 +27,7 @@ const styles = theme => ({
     cancelButton: {
         color: theme.palette.common.black
     },
-    dialog: {
-        width: '100%'
-    }
+    dialog: {}
 });
 
 class AddDiscussion extends Component {

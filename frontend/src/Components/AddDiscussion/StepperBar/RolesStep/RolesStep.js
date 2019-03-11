@@ -8,27 +8,51 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import TextField from '@material-ui/core/TextField';
 
 import AddRole from './AddRole/AddRole';
 
 const ROLES = [
-    { _id: '1' ,name: 'רע"ן יסודות' },
-    { _id: '2' ,name: 'רע"ן יסודות' },
-    { _id: '3' ,name: 'רע"ן יסודות' },
-    { _id: '4' ,name: 'רע"ן יסודות' },
-    { _id: '5' ,name: 'רע"ן יסודות' },
-    { _id: '6' ,name: 'רע"ן יסודות' },
-    { _id: '7' ,name: 'רע"ן יסודות' },
-    { _id: '8' ,name: 'רע"ן יסודות' },
-    { _id: '9' ,name: 'רע"ן יסודות' },
-    { _id: '10' ,name: 'רע"ן יסודות' },
+    { _id: '1' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },
+    { _id: '2' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },{ _id: '3' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },{ _id: '4' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },{ _id: '5' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },{ _id: '6' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },{ _id: '7' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },
 ];
 
 const styles = theme => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
+        paddingTop: '1em'
     },
     formControl: {
         //margin: theme.spacing.unit,
@@ -73,31 +97,22 @@ class RolesStep extends Component {
     ]);
 
     handleChange = (event) => {
-        let currRole = this.state.currRole;
-        currRole[event.target.id] = event.target.value;
-        this.setState({currRole: currRole})
+        // let currRole = this.state.currRole;
+        // currRole[event.target.id] = event.target.value;
+        // this.setState({currRole: currRole})
     };
 
-    handleClick = () => {
-        this.setState(prevState => (
-            {roles: prevState.roles.push(prevState.currRole)}
-        ));
-        this.props.handleNext(this.state.roles);
-    };
-
-    checkIfExists = id => {
-        let toReturn = this.state.selectedRoles.find(role => {
-            console.log(role._id === id);
-            return role._id === id
-        });
-
-        return toReturn;
+    handleClick = (roleId) => {
+        ROLES.forEach(role => {
+            if(role._id === roleId)
+                this.setState({ currRole: role })
+        })
     };
 
     removeFromSelectedRoles = id => {
         let selectedRoles = this.state.selectedRoles;
         selectedRoles = selectedRoles.filter(roleId => (
-            roleId != id
+            roleId !== id
         ));
 
         this.setState({ selectedRoles: selectedRoles });
@@ -115,35 +130,119 @@ class RolesStep extends Component {
         this.state.selectedRoles.includes(id) ? this.removeFromSelectedRoles(id) : this.addToSelectedRoles(id);
     };
 
+    isChecked = (roleId) => (
+        this.state.selectedRoles.find(id => (
+            id === roleId
+        )) || false
+    );
+
+    currRoleView = () => {
+        let currRole = this.state.currRole;
+
+        if(Object.keys(currRole).length === 0 && currRole.constructor === Object) {
+            return null
+        } else {
+            return (
+                <div style={{width: '100%'}}>
+                    <Typography variant="h6">
+                        {currRole.name}
+                    </Typography>
+                    <Grid container spacing={24} direction="row" justify="space-between" alignItems="center">
+                        <Grid item xs={4}>
+                            <TextField
+                                id="standard-name"
+                                label="יחידה"
+                                value={currRole.unit}
+                                margin="normal"
+                            />
+                        </Grid>
+                        <Grid item xs={4}>
+                            <TextField
+                                id="standard-name"
+                                label="דרגה"
+                                value={currRole.rank}
+                                margin="normal"
+                            />
+                        </Grid>
+                        <Grid item xs={4}>
+                            <TextField
+                                id="standard-name"
+                                label='אושר ע"י'
+                                value={currRole.approved_by}
+                                margin="normal"
+                            />
+                        </Grid>
+                        {/*<Grid item xs={4}>*/}
+                        {/*<TextField*/}
+                        {/*id="standard-name"*/}
+                        {/*label="יחידה"*/}
+                        {/*value={currRole.unit}*/}
+                        {/*margin="normal"*/}
+                        {/*/>*/}
+                        {/*</Grid>*/}
+                        {/*<Grid item xs={4}>*/}
+                        {/*<TextField*/}
+                        {/*id="standard-name"*/}
+                        {/*label="דרגה"*/}
+                        {/*value={currRole.rank}*/}
+                        {/*margin="normal"*/}
+                        {/*/>*/}
+                        {/*</Grid>*/}
+                        {/*<Grid item xs={4}>*/}
+                        {/*<TextField*/}
+                        {/*id="standard-name"*/}
+                        {/*label='אושר ע"י'*/}
+                        {/*value={currRole.approved_by}*/}
+                        {/*margin="normal"*/}
+                        {/*/>*/}
+                        {/*</Grid>*/}
+                    </Grid>
+                </div>
+            )
+        }
+
+    };
+
     render() {
         const { classes } = this.props;
 
         return (
-            <div>
-                <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
-                    <Select
-                        multiple
-                        value={this.state.selectedRoles}
-                        onChange={this.handleChange}
-                        input={<Input />}
-                        renderValue={selected => selected.join(', ')}
-                        MenuProps={MenuProps}
-                    >
-                        {ROLES.map(role => (
-                            <MenuItem key={role._id} value={role.name}>
-                                <Checkbox id={role._id} onClick={this.handleChoose} />
-                                <ListItemText primary={role.name} />
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+            <div className={classes.root}>
+                <Grid
+                    container
+                    direction="row"
+                    justify="space-evenly"
+                    alignItems="center"
+                >
+                    <Grid item sm={3}>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="select-multiple-checkbox">רשימת תפקידים</InputLabel>
+                            <Select
+                                multiple
+                                value={this.state.selectedRoles}
+                                onChange={this.handleChange}
+                                renderValue={selected => selected.join(', ')}
+                                MenuProps={MenuProps}
+                            >
+                                {ROLES.map(role => (
+                                    <MenuItem key={role._id} value={role.name}>
+                                        <Checkbox checked={this.isChecked(role._id)} id={role._id} onClick={this.handleChoose} />
+                                        <ListItemText primary={role.name} onClick={this.handleClick.bind(this, role._id)} />
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                    <Grid item sm={8}>
+                        {this.currRoleView()}
+                    </Grid>
                 {/*<Button onClick={this.handleClick}>*/}
                     {/*המשך*/}
                 {/*</Button>*/}
                 {/*<Button onClick={this.props.handleBack}>*/}
                     {/*חזור*/}
                 {/*</Button>*/}
+                </Grid>
             </div>
         )
     }
