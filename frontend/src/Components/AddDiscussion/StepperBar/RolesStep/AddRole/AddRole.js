@@ -40,15 +40,15 @@ class AddRole extends Component {
         return (
             <div>
                 <div>
-                    {this.state.fields.map((field, index) => {
-                        return (<TextField
+                    {this.state.fields.map((field, index) => (
+                        <TextField
                             key={index}
                             id={field.id}
                             placeholder={field.placeHolder}
                             onChange={this.handleChange}
                             fullWidth
-                        />)
-                    })}
+                        />
+                    ))}
                 </div>
             </div>
         )
