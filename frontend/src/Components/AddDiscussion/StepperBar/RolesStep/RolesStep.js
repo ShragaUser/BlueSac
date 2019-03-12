@@ -2,18 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 
 import AddRole from './AddRole/AddRole';
+import RoleChip from './RoleChip/RoleChip';
 
 const ROLES = [
     { _id: '1' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
@@ -46,6 +40,16 @@ const ROLES = [
         skills: "כישורים כישורים", approved_by: "שון ביג דיק",
         approved_at: new Date()
     },
+    { _id: '8' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },
+    { _id: '9' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },
 ];
 
 const styles = theme => ({
@@ -54,31 +58,18 @@ const styles = theme => ({
         flexWrap: 'wrap',
         paddingTop: '1em'
     },
-    formControl: {
-        //margin: theme.spacing.unit,
-        minWidth: 120,
-        maxWidth: 300,
+    chipsDiv: {
+        maxHeight: '20vh',
+        overflowY: 'auto'
     },
-
 });
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        },
-    },
-};
 
 class RolesStep extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            roles: [],
+            roles: ROLES,
             currRole: {},
             fields: this.initFields(),
             selectedRoles: []
@@ -130,12 +121,6 @@ class RolesStep extends Component {
         this.state.selectedRoles.includes(id) ? this.removeFromSelectedRoles(id) : this.addToSelectedRoles(id);
     };
 
-    isChecked = (roleId) => (
-        this.state.selectedRoles.find(id => (
-            id === roleId
-        )) || false
-    );
-
     currRoleView = () => {
         let currRole = this.state.currRole;
 
@@ -172,36 +157,22 @@ class RolesStep extends Component {
                                 margin="normal"
                             />
                         </Grid>
-                        {/*<Grid item xs={4}>*/}
-                        {/*<TextField*/}
-                        {/*id="standard-name"*/}
-                        {/*label="יחידה"*/}
-                        {/*value={currRole.unit}*/}
-                        {/*margin="normal"*/}
-                        {/*/>*/}
-                        {/*</Grid>*/}
-                        {/*<Grid item xs={4}>*/}
-                        {/*<TextField*/}
-                        {/*id="standard-name"*/}
-                        {/*label="דרגה"*/}
-                        {/*value={currRole.rank}*/}
-                        {/*margin="normal"*/}
-                        {/*/>*/}
-                        {/*</Grid>*/}
-                        {/*<Grid item xs={4}>*/}
-                        {/*<TextField*/}
-                        {/*id="standard-name"*/}
-                        {/*label='אושר ע"י'*/}
-                        {/*value={currRole.approved_by}*/}
-                        {/*margin="normal"*/}
-                        {/*/>*/}
-                        {/*</Grid>*/}
                     </Grid>
                 </div>
             )
         }
 
     };
+
+    isChecked = (roleId) => (
+        this.state.selectedRoles.find(id => (
+            id === roleId
+        )) || false
+    );
+
+    getVariant = id => (
+        this.isChecked(id) ? 'default' : 'outlined'
+    );
 
     render() {
         const { classes } = this.props;
@@ -214,26 +185,18 @@ class RolesStep extends Component {
                     justify="space-evenly"
                     alignItems="center"
                 >
-                    <Grid item sm={3}>
-                        <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="select-multiple-checkbox">רשימת תפקידים</InputLabel>
-                            <Select
-                                multiple
-                                value={this.state.selectedRoles}
-                                onChange={this.handleChange}
-                                renderValue={selected => selected.join(', ')}
-                                MenuProps={MenuProps}
-                            >
-                                {ROLES.map(role => (
-                                    <MenuItem key={role._id} value={role.name}>
-                                        <Checkbox checked={this.isChecked(role._id)} id={role._id} onClick={this.handleChoose} />
-                                        <ListItemText primary={role.name} onClick={this.handleClick.bind(this, role._id)} />
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
+                    <Grid item sm={6}>
+                        <div className={classes.chipsDiv}>
+                            {this.state.roles.map(role => (
+                                <RoleChip
+                                    role={role}
+                                    variant={this.getVariant(role._id)}
+                                    onClick={this.addToSelectedRoles}
+                                />
+                            ))}
+                        </div>
                     </Grid>
-                    <Grid item sm={8}>
+                    <Grid item sm={6}>
                         {this.currRoleView()}
                     </Grid>
                 {/*<Button onClick={this.handleClick}>*/}
