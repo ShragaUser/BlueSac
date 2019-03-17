@@ -14,9 +14,9 @@ class PeopleStep extends Component {
     }
 
     initFields = () => ([
-        {id: 'first_name', placeHolder: 'שם פרטי'},
-        {id: 'last_name', placeHolder: 'שם משפחה'},
-        {id: 'person_id', placeHolder: 'מספר מזהה'}
+        {id: 'first_name', label: 'שם פרטי'},
+        {id: 'last_name', label: 'שם משפחה'},
+        {id: 'person_id', label: 'מספר מזהה'}
     ]);
 
     handleChange = (event) => {
@@ -39,7 +39,7 @@ class PeopleStep extends Component {
                     return (<TextField
                         key={index}
                         id={field.id}
-                        placeholder={field.placeHolder}
+                        label={field.label}
                         onChange={this.handleChange}
                         fullWidth
                     />)
