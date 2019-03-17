@@ -9,49 +9,6 @@ import TextField from '@material-ui/core/TextField';
 import AddRole from './AddRole/AddRole';
 import RoleChip from './RoleChip/RoleChip';
 
-const ROLES = [
-    { _id: '1' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
-        approved_at: new Date()
-    },
-    { _id: '2' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
-        approved_at: new Date()
-    },{ _id: '3' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
-        approved_at: new Date()
-    },{ _id: '4' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
-        approved_at: new Date()
-    },{ _id: '5' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
-        approved_at: new Date()
-    },{ _id: '6' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
-        approved_at: new Date()
-    },{ _id: '7' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
-        approved_at: new Date()
-    },
-    { _id: '8' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
-        approved_at: new Date()
-    },
-    { _id: '9' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
-        approved_at: new Date()
-    },
-];
-
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -59,9 +16,13 @@ const styles = theme => ({
         paddingTop: '1em'
     },
     chipsDiv: {
-        maxHeight: '20vh',
+        direction: 'ltr',
+        maxHeight: '25vh',
         overflowY: 'auto'
     },
+    chipsDivInside: {
+        direction: 'rtl'
+    }
 });
 
 class RolesStep extends Component {
@@ -87,19 +48,6 @@ class RolesStep extends Component {
         {id: 'approved_date', placeHolder: 'תאריך אישור'}
     ]);
 
-    handleChange = (event) => {
-        // let currRole = this.state.currRole;
-        // currRole[event.target.id] = event.target.value;
-        // this.setState({currRole: currRole})
-    };
-
-    handleClick = (roleId) => {
-        ROLES.forEach(role => {
-            if(role._id === roleId)
-                this.setState({ currRole: role })
-        })
-    };
-
     removeFromSelectedRoles = id => {
         let selectedRoles = this.state.selectedRoles;
         selectedRoles = selectedRoles.filter(roleId => (
@@ -114,11 +62,6 @@ class RolesStep extends Component {
         selectedRoles.push(id);
 
         this.setState({ selectedRoles: selectedRoles })
-    };
-
-    handleChoose = event => {
-        let id = event.target.id;
-        this.state.selectedRoles.includes(id) ? this.removeFromSelectedRoles(id) : this.addToSelectedRoles(id);
     };
 
     currRoleView = () => {
@@ -161,7 +104,6 @@ class RolesStep extends Component {
                 </div>
             )
         }
-
     };
 
     isChecked = (roleId) => (
@@ -187,17 +129,20 @@ class RolesStep extends Component {
                 >
                     <Grid item sm={6}>
                         <div className={classes.chipsDiv}>
+                            <div className={classes.chipsDivInside}>
                             {this.state.roles.map(role => (
                                 <RoleChip
                                     role={role}
                                     variant={this.getVariant(role._id)}
-                                    onClick={this.addToSelectedRoles}
+                                    add={this.addToSelectedRoles}
+                                    remove={this.removeFromSelectedRoles}
                                 />
                             ))}
+                            </div>
                         </div>
                     </Grid>
                     <Grid item sm={6}>
-                        {this.currRoleView()}
+                        Edit Roles!!
                     </Grid>
                 {/*<Button onClick={this.handleClick}>*/}
                     {/*המשך*/}
@@ -216,3 +161,46 @@ RolesStep.propTypes = {
 };
 
 export default withStyles(styles, { withTheme: true })(RolesStep);
+
+const ROLES = [
+    { _id: '1' ,name: 'אני תפקיד חשוב', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },
+    { _id: '2' ,name: 'לי יש תפקיד חשוב', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },{ _id: '3' ,name: 'אני מבזבז כסף', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },{ _id: '4' ,name: 'להלהלהלהלהלהלללל', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },{ _id: '5' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },{ _id: '6' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },{ _id: '7' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },
+    { _id: '8' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },
+    { _id: '9' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "שון ביג דיק",
+        approved_at: new Date()
+    },
+];

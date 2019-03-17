@@ -7,11 +7,10 @@ const styles = theme => ({
     chip: {
         margin: theme.spacing.unit / 2,
     }
-
 });
 
 function RoleChip(props) {
-    const { classes } = props;
+    const { classes, add, remove, variant, role } = props;
     return (
         <Chip
             label={props.role.name}
@@ -20,7 +19,7 @@ function RoleChip(props) {
             className={classes.chip}
             color="primary"
             variant={props.variant}
-            onClick={props.onClick.bind(this, props.role._id)}
+            onClick={() => variant === 'default' ? remove(role._id) : add(role._id)}
         />
     )
 }
