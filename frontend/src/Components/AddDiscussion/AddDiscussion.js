@@ -27,7 +27,7 @@ const styles = theme => ({
     cancelButton: {
         color: theme.palette.common.black
     },
-    dialog: {}
+    dialog: {},
 });
 
 class AddDiscussion extends Component {
@@ -61,8 +61,7 @@ class AddDiscussion extends Component {
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"
                     className={classes.dialog}
-                    maxWidth='sm'
-                    fullWidth={true}
+                    maxWidth='md'
                 >
                     <DialogContent className={classes.title}>
                         <div>
