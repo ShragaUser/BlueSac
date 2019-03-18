@@ -16,6 +16,11 @@ const styles = theme => ({
     footer: {
         paddingTop: 100,
     },
+    AddDiscussion : {
+        position: 'fixed',
+        bottom: 10,
+        right: 10
+    }
 });
 
 class App extends Component {
@@ -34,16 +39,9 @@ class App extends Component {
                       <Footer/>
                   </Grid>
               </Grid>
-              <Grid
-                  container
-                  direction="row"
-                  justify="flex-end"
-                  alignItems="center"
-              >
-                  <Grid item style={{marginLeft: 30}}>
-                      <AddDiscussion/>
-                  </Grid>
-              </Grid>
+              <div className={classes.AddDiscussion}>
+                <AddDiscussion/>
+              </div>
           </div>
       )
     }
@@ -52,6 +50,5 @@ class App extends Component {
 App.propTypes = {
     classes: PropTypes.object.isRequired
 };
-
 
 export default withStyles(styles)(App);

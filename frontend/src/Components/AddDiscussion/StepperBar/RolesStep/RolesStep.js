@@ -15,15 +15,19 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         paddingTop: '1em',
-        minHeight: '20vh'
+        height: '43vh'
     },
-    editRole : {
-        maxHeight: '30vh'
+    editRole: {
+        maxHeight: '40vh'
     },
     chipsDiv: {
-        maxHeight: '30vh',
-        overflowY: 'auto'
+        overflowY: 'auto',
+        direction: 'rtl',
+        maxHeight: '40vh'
     },
+    div: {
+        direction: 'ltr'
+    }
 });
 
 class RolesStep extends Component {
@@ -61,7 +65,7 @@ class RolesStep extends Component {
         await this.setState({ currRole: currRole });
     };
 
-    isChecked = (roleId) => (
+    isChecked = roleId => (
         this.state.selectedRoles.find(id => (
             id === roleId
         )) || false
@@ -83,7 +87,7 @@ class RolesStep extends Component {
                 >
                     <Grid item sm={6}>
                         <div className={classes.chipsDiv}>
-                            <div>
+                            <div className={classes.div}>
                                 {this.state.roles.map((role, index) => (
                                     <RoleChip
                                         key={index}
@@ -98,14 +102,16 @@ class RolesStep extends Component {
                         </div>
                     </Grid>
                     <Grid item sm={6} className={classes.editRole}>
-                        <EditRole role={this.state.currRole}/>
+                        <div>
+                            <EditRole role={this.state.currRole}/>
+                        </div>
                     </Grid>
-                {/*<Button onClick={this.handleClick}>*/}
-                    {/*המשך*/}
-                {/*</Button>*/}
-                {/*<Button onClick={this.props.handleBack}>*/}
-                    {/*חזור*/}
-                {/*</Button>*/}
+                <Button onClick={this.handleClick}>
+                    המשך
+                </Button>
+                <Button onClick={this.props.handleBack}>
+                    חזור
+                </Button>
                 </Grid>
             </div>
         )
@@ -187,6 +193,10 @@ const ROLES = [
         skills: "כישורים כישורים", approved_by: "דניאל כידון",
         approved_at: new Date().toDateString()
     },{ _id: '17' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
+        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
+        skills: "כישורים כישורים", approved_by: "דניאל כידון",
+        approved_at: new Date().toDateString()
+    },{ _id: '18' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
         description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
         skills: "כישורים כישורים", approved_by: "דניאל כידון",
         approved_at: new Date().toDateString()

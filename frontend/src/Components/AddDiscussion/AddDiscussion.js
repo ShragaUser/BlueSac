@@ -16,7 +16,6 @@ const styles = theme => ({
     },
     title: {
         backgroundColor: theme.palette.background.default,
-
     },
     textField: {
         paddingTop: 10
@@ -34,7 +33,7 @@ class AddDiscussion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: true,
+            isOpen: false,
             name: "",
             date: "",
             people: []

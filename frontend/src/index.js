@@ -11,18 +11,20 @@ import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import red from '@material-ui/core/colors/red';
+import yellow from '@material-ui/core/colors/yellow';
 import amber from '@material-ui/core/colors/amber';
 import blue from '@material-ui/core/colors/blue';
+import indigo from '@material-ui/core/colors/indigo';
+import green from '@material-ui/core/colors/green';
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const generateClassName = createGenerateClassName();
 const theme = createMuiTheme({
     palette: {
         type: "light",
-        primary: red,
+        primary: indigo,
         secondary: {
-            main: amber.A400,
+            main: yellow[700],
             light: blue[500],
             dark: amber[800]
         },
