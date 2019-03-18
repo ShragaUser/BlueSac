@@ -27,7 +27,7 @@ function Footer(props) {
             <div elevation={1}>
                 <Switch>
                     <Route path="/discussionPage" component={DiscussionPage}/>
-                    <Route component={HomePage}/>
+                    <Route component={DiscussionPage}/>
                 </Switch>
             </div>
         </div>

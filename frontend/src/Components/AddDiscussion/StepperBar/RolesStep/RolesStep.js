@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+import Divider from '@material-ui/core/Divider';
 
 import AddRole from './AddRole/AddRole';
 import RoleChip from './RoleChip/RoleChip';
@@ -15,7 +15,7 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         paddingTop: '1em',
-        height: '43vh'
+        height: '35vh'
     },
     editRole: {
         maxHeight: '40vh'
@@ -83,7 +83,7 @@ class RolesStep extends Component {
                 <Grid
                     container
                     direction="row"
-                    justify="space-evenly"
+                    justify="space-between"
                 >
                     <Grid item sm={6}>
                         <div className={classes.chipsDiv}>
@@ -106,12 +106,16 @@ class RolesStep extends Component {
                             <EditRole role={this.state.currRole}/>
                         </div>
                     </Grid>
-                <Button onClick={this.handleClick}>
-                    המשך
-                </Button>
-                <Button onClick={this.props.handleBack}>
-                    חזור
-                </Button>
+                    <Grid item sm={6}>
+                        <Button onClick={this.handleClick}>
+                            המשך
+                        </Button>
+                    </Grid>
+                    <Grid item sm={6}>
+                        <Button onClick={this.props.handleBack}>
+                            חזור
+                        </Button>
+                    </Grid>
                 </Grid>
             </div>
         )

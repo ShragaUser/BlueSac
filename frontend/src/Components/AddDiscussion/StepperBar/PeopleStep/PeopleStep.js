@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
 
 class PeopleStep extends Component {
     constructor(props) {
@@ -14,9 +16,9 @@ class PeopleStep extends Component {
     }
 
     initFields = () => ([
+        {id: 'person_id', label: 'מספר מזהה'},
         {id: 'first_name', label: 'שם פרטי'},
-        {id: 'last_name', label: 'שם משפחה'},
-        {id: 'person_id', label: 'מספר מזהה'}
+        {id: 'last_name', label: 'שם משפחה'}
     ]);
 
     handleChange = (event) => {
@@ -34,26 +36,37 @@ class PeopleStep extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.fields.map((field, index) => {
-                    return (<TextField
-                        key={index}
-                        id={field.id}
-                        label={field.label}
-                        onChange={this.handleChange}
-                        fullWidth
-                    />)
-                })}
-                <Button onClick={this.handleClick}>
-                    צור
-                </Button>
-                <Button onClick={this.props.handleBack}>
-                    חזור
-                </Button>
-                <Button>
-                    ביטול
-                </Button>
-            </div>
+            <Grid
+                container
+                direction="row"
+                justify="space-between"
+            >
+                <Grid item sm={5}>
+                    {this.state.fields.map((field, index) => (
+                        <TextField
+                            key={index}
+                            id={field.id}
+                            label={field.label}
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                    ))}
+                </Grid>
+                <Grid item sm={6}>
+                    asdada
+                </Grid>
+                <Grid item sm={12}/>
+                    <Button onClick={this.handleClick}>
+                        צור דש"ב
+                    </Button>
+                    <Button onClick={this.props.handleBack}>
+                        חזור
+                    </Button>
+                    <Button>
+                        ביטול
+                    </Button>
+                <Grid/>
+            </Grid>
         )
     }
 }

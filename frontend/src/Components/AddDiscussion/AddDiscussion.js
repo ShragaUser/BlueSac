@@ -33,20 +33,16 @@ class AddDiscussion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false,
+            isOpen: true,
             name: "",
             date: "",
             people: []
         };
     }
 
-    handleOpen = () => {
-        this.setState({ isOpen: true });
-    };
+    handleOpen = () => this.setState({ isOpen: true });
 
-    handleClose = () => {
-        this.setState({ isOpen: false });
-    };
+    handleClose = () => this.setState({ isOpen: false });
 
     render() {
         const { classes } = this.props;

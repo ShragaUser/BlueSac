@@ -35,7 +35,7 @@ class StepperBar extends Component {
         super(props);
 
         this.state = {
-            activeStep: 0,
+            activeStep: 2,
             people: [],
             roles: [],
             discussion: {},

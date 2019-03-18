@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
+
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import SideBar from './Components/SideBar/SideBar';

@@ -15,7 +15,6 @@ import yellow from '@material-ui/core/colors/yellow';
 import amber from '@material-ui/core/colors/amber';
 import blue from '@material-ui/core/colors/blue';
 import indigo from '@material-ui/core/colors/indigo';
-import green from '@material-ui/core/colors/green';
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const generateClassName = createGenerateClassName();
