@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import ListItemText from '@material-ui/core/ListItemText';
+import Input from '@material-ui/core/Input';
+import Checkbox from '@material-ui/core/Checkbox';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+
+const newPerson = { person_id: '', first_name: '', last_name: '', progress: ''};
 
 class PeopleStep extends Component {
     constructor(props) {
@@ -9,22 +18,40 @@ class PeopleStep extends Component {
 
         this.state = {
             people: [],
-            currPerson: {},
+            currPerson: newPerson,
             fields: this.initFields(),
             selectedRoles: this.props.selectedRoles
         }
     }
 
     initFields = () => ([
-        {id: 'person_id', label: 'מספר מזהה'},
+        {id: 'person_id', label: 'מספר מזהה', onChange: this.handlePersonIDChange},
         {id: 'first_name', label: 'שם פרטי'},
         {id: 'last_name', label: 'שם משפחה'}
     ]);
 
-    handleChange = (event) => {
+    handleChange = event => {
         let currPerson = this.state.currPerson;
         currPerson[event.target.id] = event.target.value;
         this.setState({currPerson: currPerson})
+    };
+
+    findPerson = id => (
+        people.find(person => (
+            person.person_id === id
+        ))
+    );
+
+    handlePersonIDChange = event => {
+        let person = this.findPerson(event.target.value);
+        if(person)
+            this.setState({ currPerson: person });
+        else {
+            let currPerson = newPerson;
+            currPerson.person_id = event.target.value;
+            this.setState({ currPerson:  currPerson });
+        }
+
     };
 
     handleClick = () => {
@@ -35,28 +62,22 @@ class PeopleStep extends Component {
     };
 
     getSelectField = () => (
-        <TextField
-            id="standard-select-currency-native"
-            select
-            label="Native select"
-            // className={classes.textField}
-            value={this.state.currency}
-            onChange={this.handleChange('currency')}
-            SelectProps={{
-                native: true,
-                MenuProps: {
-                    // className: classes.menu,
-                },
-            }}
-            helperText="Please select your currency"
-            margin="normal"
-        >
-            {this.state.selectedRoles.map(role=> (
-                <option key={role.value} value={role.value}>
-                    {role.label}
-                </option>
-            ))}
-        </TextField>
+        <FormControl>
+            <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
+            <Select
+                multiple
+                value={[]}
+                onChange={this.handleChange}
+                input={<Input id="select-multiple-checkbox" />}
+            >
+                {this.state.selectedRoles.map(role => (
+                    <MenuItem key={role._id} value={role._id}>
+                        <Checkbox />
+                        <ListItemText primary={role.name} />
+                    </MenuItem>
+                ))}
+            </Select>
+        </FormControl>
     );
 
     render() {
@@ -72,14 +93,15 @@ class PeopleStep extends Component {
                             key={index}
                             id={field.id}
                             label={field.label}
-                            onChange={this.handleChange}
+                            value={this.state.currPerson[field.id]}
+                            onChange={field.onChange || this.handleChange}
                             fullWidth
                         />
                     ))}
-                    {/*{this.getSelectField()}*/}
+                    {this.getSelectField()}
                 </Grid>
                 <Grid item sm={6}>
-                    asdada
+                    asdad
                 </Grid>
                 <Grid item sm={12}/>
                     <Button onClick={this.handleClick}>
@@ -98,3 +120,9 @@ class PeopleStep extends Component {
 }
 
 export default PeopleStep;
+
+const people = [
+    {first_name: 'שון', last_name: 'דניאל', person_id: '1', process: 65},
+    {first_name: 'שחר', last_name: 'זמיר', person_id: '2', process: 65},
+    {first_name: 'ישראל', last_name: 'ישראלי', person_id: '3', process: 65},
+];
