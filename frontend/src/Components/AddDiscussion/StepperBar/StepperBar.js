@@ -35,7 +35,7 @@ class StepperBar extends Component {
         super(props);
 
         this.state = {
-            activeStep: 2,
+            activeStep: 1,
             people: [],
             roles: [],
             discussion: {},
@@ -126,7 +126,7 @@ class StepperBar extends Component {
             case 1:
                 return <RolesStep handleNext={this.handleNext} handleBack={this.handleBack}/>;
             case 2:
-                return <PeopleStep handleBack={this.handleBack} handleNext={this.handleNext} />;
+                return <PeopleStep selectedRoles={this.state.roles} handleBack={this.handleBack} handleNext={this.handleNext} />;
             default:
                 return 'נוצר בהצלחה!';
         }

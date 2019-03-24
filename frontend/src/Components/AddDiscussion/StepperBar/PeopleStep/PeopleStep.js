@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 class PeopleStep extends Component {
     constructor(props) {
@@ -11,7 +10,8 @@ class PeopleStep extends Component {
         this.state = {
             people: [],
             currPerson: {},
-            fields: this.initFields()
+            fields: this.initFields(),
+            selectedRoles: this.props.selectedRoles
         }
     }
 
@@ -34,6 +34,31 @@ class PeopleStep extends Component {
         this.props.handleNext(this.state.people);
     };
 
+    getSelectField = () => (
+        <TextField
+            id="standard-select-currency-native"
+            select
+            label="Native select"
+            // className={classes.textField}
+            value={this.state.currency}
+            onChange={this.handleChange('currency')}
+            SelectProps={{
+                native: true,
+                MenuProps: {
+                    // className: classes.menu,
+                },
+            }}
+            helperText="Please select your currency"
+            margin="normal"
+        >
+            {this.state.selectedRoles.map(role=> (
+                <option key={role.value} value={role.value}>
+                    {role.label}
+                </option>
+            ))}
+        </TextField>
+    );
+
     render() {
         return (
             <Grid
@@ -51,6 +76,7 @@ class PeopleStep extends Component {
                             fullWidth
                         />
                     ))}
+                    {/*{this.getSelectField()}*/}
                 </Grid>
                 <Grid item sm={6}>
                     asdada

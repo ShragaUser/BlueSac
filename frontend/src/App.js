@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
 
 import Header from './Components/Header/Header';
-import Footer from './Components/Footer/Footer';
+import Footer from './Components/Body/Body';
 import SideBar from './Components/SideBar/SideBar';
 import AddDiscussion from './Components/AddDiscussion/AddDiscussion';
 

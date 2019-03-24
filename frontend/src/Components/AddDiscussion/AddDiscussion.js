@@ -69,7 +69,6 @@ class AddDiscussion extends Component {
                     <Divider/>
                 </Dialog>
             </div>
-
         )
     }
 }

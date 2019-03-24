@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import Chip from '@material-ui/core/Chip';
-import Avatar from '@material-ui/core/Avatar';
 import EditIcon from '@material-ui/icons/Edit';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -24,7 +23,7 @@ function RoleChip(props) {
             color="primary"
             deleteIcon={<EditIcon/>}
             variant={props.variant}
-            onClick={() => variant === 'default' ? remove(role._id) : add(role._id)}
+            onClick={() => variant === 'default' ? remove(role._id) : add(role)}
         />
     )
 }

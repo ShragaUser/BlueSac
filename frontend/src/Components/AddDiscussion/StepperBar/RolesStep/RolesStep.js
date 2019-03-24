@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 
-import AddRole from './AddRole/AddRole';
 import RoleChip from './RoleChip/RoleChip';
 import EditRole from './EditRole/EditRole';
 
@@ -41,17 +38,21 @@ class RolesStep extends Component {
         }
     }
 
-    addToSelectedRoles = id => {
+    handleClick = () => {
+        this.props.handleNext(this.state.selectedRoles)
+    };
+
+    addToSelectedRoles = role => {
         let selectedRoles = this.state.selectedRoles;
-        selectedRoles.push(id);
+        selectedRoles.push(role);
 
         this.setState({ selectedRoles: selectedRoles })
     };
 
     removeFromSelectedRoles = id => {
         let selectedRoles = this.state.selectedRoles;
-        selectedRoles = selectedRoles.filter(roleId => (
-            roleId !== id
+        selectedRoles = selectedRoles.filter(role => (
+            role._id !== id
         ));
 
         this.setState({ selectedRoles: selectedRoles });
@@ -66,13 +67,26 @@ class RolesStep extends Component {
     };
 
     isChecked = roleId => (
-        this.state.selectedRoles.find(id => (
-            id === roleId
+        this.state.selectedRoles.find(({_id}) => (
+            _id === roleId
         )) || false
     );
 
     getVariant = id => (
         this.isChecked(id) ? 'default' : 'outlined'
+    );
+
+    getRolesChips = () => (
+        this.state.roles.map((role, index) => (
+            <RoleChip
+                key={index}
+                role={role}
+                variant={this.getVariant(role._id)}
+                add={this.addToSelectedRoles}
+                remove={this.removeFromSelectedRoles}
+                edit={this.handleRoleEdit}
+            />
+        ))
     );
 
     render() {
@@ -88,16 +102,7 @@ class RolesStep extends Component {
                     <Grid item sm={6}>
                         <div className={classes.chipsDiv}>
                             <div className={classes.div}>
-                                {this.state.roles.map((role, index) => (
-                                    <RoleChip
-                                        key={index}
-                                        role={role}
-                                        variant={this.getVariant(role._id)}
-                                        add={this.addToSelectedRoles}
-                                        remove={this.removeFromSelectedRoles}
-                                        edit={this.handleRoleEdit}
-                                    />
-                                ))}
+                                {this.getRolesChips()}
                             </div>
                         </div>
                     </Grid>
@@ -133,12 +138,11 @@ const ROLES = [
         description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
         skills: "כישורים כישורים", approved_by: "דניאל כידון",
         approved_at: new Date().toDateString()
-    },
-    { _id: '2' ,name: 'לי יש תפקיד חשוב', unit: "ספיר", rank: 2,
+    },{_id: '2' ,name: 'לי יש תפקיד חשוב', unit: "ספיר", rank: 2,
         description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
         skills: "כישורים כישורים", approved_by: "דניאל כידון",
         approved_at: new Date().toDateString()
-    },{ _id: '3' ,name: 'אני מבזבז כסף', unit: "ספיר", rank: 2,
+    },{ _id: '3' ,name: 'רע"ן מספר אחד', unit: "ספיר", rank: 2,
         description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
         skills: "כישורים כישורים", approved_by: "דניאל כידון",
         approved_at: new Date().toDateString()
