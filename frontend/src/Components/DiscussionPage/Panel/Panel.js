@@ -61,15 +61,12 @@ class Panel extends Component {
         const { classes } = this.props;
         return (
                 <ExpansionPanel className={classes.root}>
-                    <ExpansionPanelSummary onClick={this.handleClick}>
+                    <ExpansionPanelSummary onClick={this.handleClick} expandIcon={<ExpandMoreIcon/>}>
                         <div className={classes.headers}>
                             <Typography className={classes.heading}>
                                 {this.state.name}
                             </Typography>
                             { this.state.isOpen ? null : this.renderSecondaryHeading() }
-                        </div>
-                        <div className={classes.icon}>
-                            <ExpandMoreIcon />
                         </div>
                     </ExpansionPanelSummary>
                     <Divider />

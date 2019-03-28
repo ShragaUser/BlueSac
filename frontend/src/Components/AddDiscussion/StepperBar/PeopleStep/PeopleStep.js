@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import Grid from '@material-ui/core/Grid';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Checkbox from '@material-ui/core/Checkbox';
+import TextField from "@material-ui/core/TextField";
+import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
-import Input from '@material-ui/core/Input';
-import Checkbox from '@material-ui/core/Checkbox';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
 
-const newPerson = { person_id: '', first_name: '', last_name: '', progress: ''};
+const newPerson = { person_id: '', first_name: '', last_name: '', progress: '', roles: []};
 
 class PeopleStep extends Component {
     constructor(props) {
@@ -36,6 +36,12 @@ class PeopleStep extends Component {
         this.setState({currPerson: currPerson})
     };
 
+    handleRoleSelect = event => {
+        let { currPerson } = this.state;
+        currPerson.roles = event.target.value;
+        this.setState({ currPerson: currPerson });
+    };
+
     findPerson = id => (
         people.find(person => (
             person.person_id === id
@@ -44,14 +50,15 @@ class PeopleStep extends Component {
 
     handlePersonIDChange = event => {
         let person = this.findPerson(event.target.value);
-        if(person)
-            this.setState({ currPerson: person });
+        if(person) {
+            person.roles = [];
+            this.setState({currPerson: person});
+        }
         else {
             let currPerson = newPerson;
             currPerson.person_id = event.target.value;
             this.setState({ currPerson:  currPerson });
         }
-
     };
 
     handleClick = () => {
@@ -61,18 +68,34 @@ class PeopleStep extends Component {
         this.props.handleNext(this.state.people);
     };
 
+    getValues = roles => {
+        let names = [];
+        roles.forEach(role => {
+            names.push(role.name);
+        });
+
+        return names.join(', ');
+    };
+
+    isChecked = id => (
+        this.state.currPerson.roles.find(role => (
+            role._id === id
+        )) ? true : false
+    );
+
     getSelectField = () => (
-        <FormControl>
-            <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
+        <FormControl fullWidth={true}>
+            <InputLabel htmlFor="select-multiple-checkbox">תפקידים</InputLabel>
             <Select
                 multiple
-                value={[]}
-                onChange={this.handleChange}
+                value={this.state.currPerson.roles}
+                onChange={this.handleRoleSelect}
                 input={<Input id="select-multiple-checkbox" />}
+                renderValue={this.getValues}
             >
                 {this.state.selectedRoles.map(role => (
-                    <MenuItem key={role._id} value={role._id}>
-                        <Checkbox />
+                    <MenuItem key={role._id} value={role}>
+                        <Checkbox checked={this.isChecked(role._id)}/>
                         <ListItemText primary={role.name} />
                     </MenuItem>
                 ))}
@@ -91,6 +114,7 @@ class PeopleStep extends Component {
                     {this.state.fields.map((field, index) => (
                         <TextField
                             key={index}
+                            autoComplete="off"
                             id={field.id}
                             label={field.label}
                             value={this.state.currPerson[field.id]}
@@ -101,7 +125,7 @@ class PeopleStep extends Component {
                     {this.getSelectField()}
                 </Grid>
                 <Grid item sm={6}>
-                    asdad
+                   אדי הומו
                 </Grid>
                 <Grid item sm={12}/>
                     <Button onClick={this.handleClick}>

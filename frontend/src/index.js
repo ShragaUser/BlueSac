@@ -9,12 +9,11 @@ import rtl from 'jss-rtl';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
-
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import yellow from '@material-ui/core/colors/yellow';
 import amber from '@material-ui/core/colors/amber';
 import blue from '@material-ui/core/colors/blue';
 import indigo from '@material-ui/core/colors/indigo';
+import orange from '@material-ui/core/colors/orange';
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const generateClassName = createGenerateClassName();
@@ -23,7 +22,7 @@ const theme = createMuiTheme({
         type: "light",
         primary: indigo,
         secondary: {
-            main: yellow[700],
+            main: orange[500],
             light: blue[500],
             dark: amber[800]
         },

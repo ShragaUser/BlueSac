@@ -4,11 +4,26 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Panel from './Panel/Panel';
 
-let panels = [
-    {name: 'שם דש"ב', date: '20/01/2018', details: 'adsadsadsadsadasdsad'},
-    {name: 'שם דש"ב', date: '20/01/2018', details: 'adasdasdasdasdsadasd'},
-    {name: 'שם דש"ב', date: '20/01/2018', details: 'adasdadasdsadsadsads'}
+const DISCUSSIONS = [
+    {
+        name: "tohnithan",
+        date: "12/10/2019",
+        discussion_roles: [
+            {
+                discussion_people: [
+                    {
+                        "$oid": "5c7d24b28920ba0888dd9699"
+                    }
+                ],
+                role: {
+                    "$oid": "5c7d24228920ba0888dd9698"
+                }
+            }
+        ]
+    }
 ];
+
+
 
 const styles = {
     root: {
@@ -20,8 +35,13 @@ function DiscussionPage(props) {
     const { classes } = props;
     return (
         <div className={classes.root}>
-            {panels.map((panel, index) =>
-                <Panel key={index} name={panel.name} date={panel.date} details={panel.details}/>
+            {DISCUSSIONS.map((discussion, index) =>
+                <Panel
+                    key={index}
+                    name={discussion.name}
+                    date={discussion.date}
+                    details={discussion.name}
+                />
             )}
         </div>
     )

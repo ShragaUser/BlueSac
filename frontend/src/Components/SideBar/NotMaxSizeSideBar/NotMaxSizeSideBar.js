@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import MaxSizeSideBar from './MaxSizeSideBar/MaxSizeSideBar';
-import NotMaxSizeSideBar from './NotMaxSizeSideBar/NotMaxSizeSideBar';
+import IconButton from '@material-ui/core/IconButton';
+import Drawer from '@material-ui/core/Drawer';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 240;
 
@@ -27,16 +28,22 @@ const styles = theme => ({
     toolbar: theme.mixins.toolbar,
     listItem: {
         display: 'flex',
+    },
+    menuButton: {
+        position: 'fixed',
+        top: 50,
+        left: 10
     }
 });
 
-class SideBar extends Component {
+class NotMaxSizeSideBar extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             listItems: this.getListItems(),
             selected: undefined,
+            isOpen: false
         }
     }
 
@@ -48,37 +55,38 @@ class SideBar extends Component {
         ]
     );
 
-    isScreenSizeMax = () => (
-        !(window.outerHeight < window.screen.availHeight &&
-            window.outerWidth < window.screen.availWidth)
-    );
-
-    updateScreenSize = () => {
-        this.setState({
-            isMaxSize: this.isScreenSizeMax()
-        })
+    toggleSideBar = () => {
+        this.setState(prevState => ({
+                isOpen: !prevState.isOpen
+        }))
     };
 
-    componentWillMount() {
-        this.updateScreenSize();
-    }
-
-    componentDidMount() {
-        window.addEventListener("resize", this.updateScreenSize);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("resize", this.updateScreenSize);
-    }
+    handleClick = (id, event) => {
+        this.setState({ selected: id })
+    };
 
     render() {
         const { classes } = this.props;
-        { return this.state.isMaxSize ? <MaxSizeSideBar/> : <NotMaxSizeSideBar/> }
+        return (
+            <div>
+                <IconButton
+                    color="inherit"
+                    aria-label="Open drawer"
+                    onClick={this.toggleSideBar}
+                    className={classes.menuButton}
+                >
+                    <MenuIcon />
+                </IconButton>
+                <Drawer open={this.state.isOpen} onClose={this.toggleSideBar}>
+                    <div>i am a drawer</div>
+                </Drawer>
+            </div>
+        )
     }
 }
 
-SideBar.propTypes = {
+NotMaxSizeSideBar.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SideBar);
+export default withStyles(styles)(NotMaxSizeSideBar);

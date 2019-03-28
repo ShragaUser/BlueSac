@@ -35,7 +35,7 @@ class StepperBar extends Component {
         super(props);
 
         this.state = {
-            activeStep: 2,
+            activeStep: 1,
             people: [],
             roles: [],
             discussion: {},
@@ -116,7 +116,6 @@ class StepperBar extends Component {
                 this.saveToDB(step.url, step.content);
             }
         });
-        console.log(this.state);
     };
 
     getStepContent = () => {
@@ -134,8 +133,8 @@ class StepperBar extends Component {
 
     render() {
         const { classes } = this.props;
-        const steps = this.getSteps().reverse();
         const { activeStep } = this.state;
+        const steps = this.getSteps().reverse();
 
         return (
             <div className={classes.root}>

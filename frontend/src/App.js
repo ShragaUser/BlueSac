@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
 
 import Header from './Components/Header/Header';
-import Footer from './Components/Body/Body';
+import Body from './Components/Body/Body';
 import SideBar from './Components/SideBar/SideBar';
 import AddDiscussion from './Components/AddDiscussion/AddDiscussion';
 
@@ -33,11 +33,11 @@ class App extends Component {
                   <Grid item sm={12}>
                       <Header/>
                   </Grid>
-                  <Grid item sm={2}>
+                  <Grid item xl={2} lg={2} md={1} xs={1}>
                       <SideBar/>
                   </Grid>
-                  <Grid item sm={8} className={classes.footer}>
-                      <Footer/>
+                  <Grid item xl={8} lg={8} md={10} xs={10} className={classes.footer}>
+                      <Body/>
                   </Grid>
               </Grid>
               <div className={classes.AddDiscussion}>

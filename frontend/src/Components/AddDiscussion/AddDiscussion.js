@@ -33,7 +33,7 @@ class AddDiscussion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: true,
+            isOpen: false,
             name: "",
             date: "",
             people: []

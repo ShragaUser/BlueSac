@@ -106,17 +106,17 @@ class RolesStep extends Component {
                             </div>
                         </div>
                     </Grid>
-                    <Grid item sm={6} className={classes.editRole}>
+                    <Grid item sm={5} className={classes.editRole}>
                         <div>
                             <EditRole role={this.state.currRole}/>
                         </div>
                     </Grid>
-                    <Grid item sm={6}>
+                    <Grid item sm={2}>
                         <Button onClick={this.handleClick}>
                             המשך
                         </Button>
                     </Grid>
-                    <Grid item sm={6}>
+                    <Grid item sm={2}>
                         <Button onClick={this.props.handleBack}>
                             חזור
                         </Button>
