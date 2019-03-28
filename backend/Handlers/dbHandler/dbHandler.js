@@ -44,7 +44,7 @@ function read(modelName, filter = {}) {
     return new Promise((resolve, reject) => {
         MODELS[modelName].find(filter, (err, docs) => {
             if (err) resolve({status: 500, message: err});
-            resolve({status: 200, message: docs});
+            resolve({status: 200, docs: docs});
         })
     })
 }
@@ -53,7 +53,7 @@ function update(modelName, filter, obj) {
     return new Promise((resolve, reject) => {
         MODELS[modelName].updateMany(filter, obj, (err, docs) => {
             if (err) resolve({status: 500, message: err});
-            resolve({status: 200, message: 'docs has been updated!'});
+            resolve({status: 200, message: 'docs has been updated!', docs: docs});
         })
     })
 }
@@ -62,7 +62,7 @@ function deleteMany(modelName, filter) {
     return new Promise((resolve, reject) => {
         MODELS[modelName].deleteMany(filter, (err, docs) => {
             if (err) resolve({status: 500, message: err});
-            resolve({status: 200, message: 'docs has been deleted!'});
+            resolve({status: 200, message: 'docs has been deleted!', docs: docs});
         })
     })
 }
