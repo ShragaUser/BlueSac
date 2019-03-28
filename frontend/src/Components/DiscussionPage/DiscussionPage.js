@@ -6,20 +6,32 @@ import Panel from './Panel/Panel';
 
 const DISCUSSIONS = [
     {
+        _id: "5c7d24ee8920ba0888dd969a",
         name: "tohnithan",
         date: "12/10/2019",
         discussion_roles: [
             {
                 discussion_people: [
-                    {
-                        "$oid": "5c7d24b28920ba0888dd9699"
-                    }
+                    "5c7d24b28920ba0888dd9699"
                 ],
-                role: {
-                    "$oid": "5c7d24228920ba0888dd9698"
-                }
+                _id: "5c7d24ee8920ba0888dd969b",
+                role: "5c7d24228920ba0888dd9698"
             }
-        ]
+        ],
+    },
+    {
+        _id: "5c7d24ee8920ba0888dd969a",
+        name: "tohnithan",
+        date: "12/10/2019",
+        discussion_roles: [
+            {
+                discussion_people: [
+                    "5c7d24b28920ba0888dd9699"
+                ],
+                _id: "5c7d24ee8920ba0888dd969b",
+                role: "5c7d24228920ba0888dd9698"
+            }
+        ],
     }
 ];
 
@@ -38,9 +50,7 @@ function DiscussionPage(props) {
             {DISCUSSIONS.map((discussion, index) =>
                 <Panel
                     key={index}
-                    name={discussion.name}
-                    date={discussion.date}
-                    details={discussion.name}
+                    discussion={discussion}
                 />
             )}
         </div>

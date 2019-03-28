@@ -8,6 +8,8 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
+import axios from 'axios';
+
 const styles = theme => {
     return ({
         root: {
@@ -39,9 +41,7 @@ class Panel extends Component {
         super(props);
         this.state = {
             isOpen: false,
-            name: props.name,
-            date: props.date,
-            details: props.details
+            discussion: props.discussion
         }
     }
 
@@ -53,34 +53,60 @@ class Panel extends Component {
 
     renderSecondaryHeading = () => (
         <Typography className={this.props.classes.secondaryHeading}>
-            {this.state.date}
+            {this.state.discussion.date}
         </Typography>
     );
+
+    getData = (url, id) => {
+        axios.get('http://localhost:3001/api/' + url, {
+            data: {
+                filter : {_id: id}
+            }})
+            .then(function (response) {
+                // handle success
+                console.log(response.data.docs);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+    };
+
+    componentWillMount() {
+        this.state.discussion.discussion_roles.forEach(discussionRole => {
+            this.getData('role', discussionRole.role);
+
+            discussionRole.discussion_people.forEach(personID => {
+                console.log(personID)
+                this.getData('person', personID)
+            })
+        })
+    }
 
     render() {
         const { classes } = this.props;
         return (
-                <ExpansionPanel className={classes.root}>
-                    <ExpansionPanelSummary onClick={this.handleClick} expandIcon={<ExpandMoreIcon/>}>
-                        <div className={classes.headers}>
-                            <Typography className={classes.heading}>
-                                {this.state.name}
-                            </Typography>
-                            { this.state.isOpen ? null : this.renderSecondaryHeading() }
-                        </div>
-                    </ExpansionPanelSummary>
-                    <Divider />
-                    <ExpansionPanelDetails>
-                        <div className={classes.details}>
-                            <Typography className={classes.secondaryHeading}>
-                                {this.state.date}
-                            </Typography>
-                        <Typography>
-                            {this.state.details}
+            <ExpansionPanel className={classes.root}>
+                <ExpansionPanelSummary onClick={this.handleClick} expandIcon={<ExpandMoreIcon/>}>
+                    <div className={classes.headers}>
+                        <Typography className={classes.heading}>
+                            {this.state.discussion.name}
                         </Typography>
-                        </div>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
+                        { this.state.isOpen ? null : this.renderSecondaryHeading() }
+                    </div>
+                </ExpansionPanelSummary>
+                <Divider />
+                <ExpansionPanelDetails>
+                    <div className={classes.details}>
+                        <Typography className={classes.secondaryHeading}>
+                            {this.state.discussion.date}
+                        </Typography>
+                    <Typography>
+                        {this.state.discussion.details}
+                    </Typography>
+                    </div>
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
         )
     }
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 
 import RoleChip from './RoleChip/RoleChip';
 import EditRole from './EditRole/EditRole';
@@ -105,6 +106,9 @@ class RolesStep extends Component {
                                 {this.getRolesChips()}
                             </div>
                         </div>
+                    </Grid>
+                    <Grid item sm={1}>
+                        <Divider />
                     </Grid>
                     <Grid item sm={5} className={classes.editRole}>
                         <div>
