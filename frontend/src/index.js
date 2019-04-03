@@ -2,51 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
+
+import { Provider } from "react-redux";
+import store from './redux/store';
 
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import JssProvider from 'react-jss/lib/JssProvider';
+import { MuiThemeProvider } from '@material-ui/core';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import amber from '@material-ui/core/colors/amber';
-import blue from '@material-ui/core/colors/blue';
-import indigo from '@material-ui/core/colors/indigo';
-import orange from '@material-ui/core/colors/orange';
+import theme from './themes/theme';
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const generateClassName = createGenerateClassName();
-const theme = createMuiTheme({
-    palette: {
-        type: "light",
-        primary: indigo,
-        secondary: {
-            main: orange[500],
-            light: blue[500],
-            dark: amber[800]
-        },
-        background: {
-            default: '#e6e6e6',
-            paper: '#ffffff'
-        },
-        common: {
-            primary: '#000000',
-            createBtn: blue[500]
-        }
-    },
-    typography: { useNextVariants: true },
-    direction: "rtl",
-});
 
 ReactDOM.render((
-    <JssProvider jss={jss} generateClassName={generateClassName}>
-        <MuiThemeProvider theme={theme}>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        </MuiThemeProvider>
-    </JssProvider>
+    <Provider store={store}>
+        <JssProvider jss={jss} generateClassName={generateClassName}>
+            <MuiThemeProvider theme={theme}>
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            </MuiThemeProvider>
+        </JssProvider>
+    </Provider>
     ), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

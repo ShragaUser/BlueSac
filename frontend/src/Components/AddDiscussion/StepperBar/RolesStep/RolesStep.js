@@ -8,6 +8,8 @@ import Divider from '@material-ui/core/Divider';
 import RoleChip from './RoleChip/RoleChip';
 import EditRole from './EditRole/EditRole';
 
+import { connect } from 'react-redux';
+
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -47,7 +49,9 @@ class RolesStep extends Component {
         let selectedRoles = this.state.selectedRoles;
         selectedRoles.push(role);
 
-        this.setState({ selectedRoles: selectedRoles })
+        this.setState({ selectedRoles: selectedRoles });
+
+        this.props.addToSelectedRoles(role);
     };
 
     removeFromSelectedRoles = id => {
@@ -135,7 +139,16 @@ RolesStep.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(RolesStep);
+const mapDispatchToProps = dispatch => {
+    return {
+        // dispatching plain actions
+        addToSelectedRoles: (role) => dispatch({ type: 'addToSelectedRoles', payload: role }),
+        decrement: () => dispatch({ type: 'DECREMENT' }),
+        reset: () => dispatch({ type: 'RESET' })
+    }
+};
+
+export default connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(RolesStep));
 
 const ROLES = [
     { _id: '1' ,name: 'אני תפקיד חשוב', unit: "ספיר", rank: 2,

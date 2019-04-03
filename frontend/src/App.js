@@ -8,6 +8,7 @@ import Body from './Components/Body/Body';
 import SideBar from './Components/SideBar/SideBar';
 import AddDiscussion from './Components/AddDiscussion/AddDiscussion';
 
+import { connect } from 'react-redux';
 
 const styles = theme => ({
     root: {
@@ -44,7 +45,7 @@ class App extends Component {
                 <AddDiscussion/>
               </div>
           </div>
-      )
+        )
     }
 }
 
@@ -52,4 +53,6 @@ App.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(App);
+const mapStateToProps = state => ({});
+
+export default connect(mapStateToProps)(withStyles(styles)(App));

@@ -35,8 +35,6 @@ const DISCUSSIONS = [
     }
 ];
 
-
-
 const styles = {
     root: {
         width: '100%',
