@@ -41,27 +41,12 @@ class RolesStep extends Component {
         }
     }
 
-    handleClick = () => {
-        this.props.handleNext(this.state.selectedRoles)
-    };
+    // TODO: make it work with store
+    handleClick = () => this.props.handleNext(this.state.selectedRoles);
 
-    addToSelectedRoles = role => {
-        let selectedRoles = this.state.selectedRoles;
-        selectedRoles.push(role);
+    addToSelectedRoles = role => this.props.addToSelectedRoles(role);
 
-        this.setState({ selectedRoles: selectedRoles });
-
-        this.props.addToSelectedRoles(role);
-    };
-
-    removeFromSelectedRoles = id => {
-        let selectedRoles = this.state.selectedRoles;
-        selectedRoles = selectedRoles.filter(role => (
-            role._id !== id
-        ));
-
-        this.setState({ selectedRoles: selectedRoles });
-    };
+    removeFromSelectedRoles = id => this.props.removeFromSelectedRoles(id);
 
     handleRoleEdit = async id => {
         let currRole = this.state.roles.find(role => (
@@ -72,7 +57,7 @@ class RolesStep extends Component {
     };
 
     isChecked = roleId => (
-        this.state.selectedRoles.find(({_id}) => (
+        this.props.selectedRoles.find(({_id}) => (
             _id === roleId
         )) || false
     );
@@ -96,7 +81,6 @@ class RolesStep extends Component {
 
     render() {
         const { classes } = this.props;
-
         return (
             <div className={classes.root}>
                 <Grid
@@ -141,14 +125,14 @@ RolesStep.propTypes = {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // dispatching plain actions
-        addToSelectedRoles: (role) => dispatch({ type: 'addToSelectedRoles', payload: role }),
-        decrement: () => dispatch({ type: 'DECREMENT' }),
-        reset: () => dispatch({ type: 'RESET' })
+        addToSelectedRoles: role => dispatch({ type: 'addToSelectedRoles', payload: role }),
+        removeFromSelectedRoles: id => dispatch({ type: 'removeFromSelectedRoles', payload: id }),
     }
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(RolesStep));
+const mapStateToProps = state => state.addDiscussionState;
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, { withTheme: true })(RolesStep));
 
 const ROLES = [
     { _id: '1' ,name: 'אני תפקיד חשוב', unit: "ספיר", rank: 2,
@@ -163,7 +147,7 @@ const ROLES = [
         description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
         skills: "כישורים כישורים", approved_by: "דניאל כידון",
         approved_at: new Date().toDateString()
-    },{ _id: '4' ,name: 'להלהלהלkkkkkkkkkkkkkkkkkהלהלהלללל', unit: "ספיר", rank: 2,
+    },{ _id: '4' ,name: 'להלהלהלkkkkkהלהלללל', unit: "ספיר", rank: 2,
         description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
         skills: "כישורים כישורים", approved_by: "דניאל כידון",
         approved_at: new Date().toDateString()
