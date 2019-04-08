@@ -30,188 +30,59 @@ const styles = theme => ({
     }
 });
 
-class RolesStep extends Component {
-    constructor(props) {
-        super(props);
+function getRolesChips(roles) {
+    return roles.map((role, index) => (
+        <RoleChip
+            key={index}
+            role={role}
+        />
+    ))
+}
 
-        this.state = {
-            roles: ROLES,
-            currRole: {},
-            selectedRoles: []
-        }
-    }
+function RolesStep (props){
+    const { classes, roles, roleEdit } = props;
 
-    // TODO: make it work with store
-    handleClick = () => this.props.handleNext(this.state.selectedRoles);
-
-    addToSelectedRoles = role => this.props.addToSelectedRoles(role);
-
-    removeFromSelectedRoles = id => this.props.removeFromSelectedRoles(id);
-
-    handleRoleEdit = async id => {
-        let currRole = this.state.roles.find(role => (
-            role._id === id
-        ));
-
-        await this.setState({ currRole: currRole });
-    };
-
-    isChecked = roleId => (
-        this.props.selectedRoles.find(({_id}) => (
-            _id === roleId
-        )) || false
-    );
-
-    getVariant = id => (
-        this.isChecked(id) ? 'default' : 'outlined'
-    );
-
-    getRolesChips = () => (
-        this.state.roles.map((role, index) => (
-            <RoleChip
-                key={index}
-                role={role}
-                variant={this.getVariant(role._id)}
-                add={this.addToSelectedRoles}
-                remove={this.removeFromSelectedRoles}
-                edit={this.handleRoleEdit}
-            />
-        ))
-    );
-
-    render() {
-        const { classes } = this.props;
-        return (
-            <div className={classes.root}>
-                <Grid
-                    container
-                    direction="row"
-                    justify="space-between"
-                >
-                    <Grid item sm={6}>
-                        <div className={classes.chipsDiv}>
-                            <div className={classes.div}>
-                                {this.getRolesChips()}
-                            </div>
+    return (
+        <div className={classes.root}>
+            <Grid
+                container
+                direction="row"
+                justify="space-between"
+            >
+                <Grid item sm={6}>
+                    <div className={classes.chipsDiv}>
+                        <div className={classes.div}>
+                            {getRolesChips(roles)}
                         </div>
-                    </Grid>
-                    <Grid item sm={1}>
-                        <Divider />
-                    </Grid>
-                    <Grid item sm={5} className={classes.editRole}>
-                        <div>
-                            <EditRole role={this.state.currRole}/>
-                        </div>
-                    </Grid>
-                    <Grid item sm={2}>
-                        <Button onClick={this.handleClick}>
-                            המשך
-                        </Button>
-                    </Grid>
-                    <Grid item sm={2}>
-                        <Button onClick={this.props.handleBack}>
-                            חזור
-                        </Button>
-                    </Grid>
+                    </div>
                 </Grid>
-            </div>
-        )
-    }
+                <Grid item sm={1}>
+                    <Divider />
+                </Grid>
+                <Grid item sm={5} className={classes.editRole}>
+                    <div>
+                        <EditRole role={roleEdit}/>
+                    </div>
+                </Grid>
+                <Grid item sm={2}>
+                    <Button onClick={props.handleNext.bind(this, props.selectedRoles)}>
+                        המשך
+                    </Button>
+                </Grid>
+                <Grid item sm={2}>
+                    <Button onClick={props.handleBack}>
+                        חזור
+                    </Button>
+                </Grid>
+            </Grid>
+        </div>
+    )
 }
 
 RolesStep.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        addToSelectedRoles: role => dispatch({ type: 'addToSelectedRoles', payload: role }),
-        removeFromSelectedRoles: id => dispatch({ type: 'removeFromSelectedRoles', payload: id }),
-    }
-};
-
 const mapStateToProps = state => state.addDiscussionState;
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, { withTheme: true })(RolesStep));
-
-const ROLES = [
-    { _id: '1' ,name: 'אני תפקיד חשוב', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{_id: '2' ,name: 'לי יש תפקיד חשוב', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '3' ,name: 'רע"ן מספר אחד', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '4' ,name: 'להלהלהלkkkkkהלהלללל', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '5' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '6' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '7' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },
-    { _id: '8' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },
-    { _id: '9' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '10' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '11' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '12' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '13' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '14' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '15' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '16' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '17' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '18' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },{ _id: '18' ,name: 'רע"ן יסודות', unit: "ספיר", rank: 2,
-        description: "בלה בלה בלה בלה", requirements: "ידע בניהול טכנולוגי",
-        skills: "כישורים כישורים", approved_by: "דניאל כידון",
-        approved_at: new Date().toDateString()
-    },
-];
+export default connect(mapStateToProps)(withStyles(styles, { withTheme: true })(RolesStep));

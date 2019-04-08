@@ -10,6 +10,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import { connect } from 'react-redux';
+
 const newPerson = { person_id: '', first_name: '', last_name: '', progress: '', roles: []};
 
 class PeopleStep extends Component {
@@ -20,7 +22,6 @@ class PeopleStep extends Component {
             people: [],
             currPerson: newPerson,
             fields: this.initFields(),
-            selectedRoles: this.props.selectedRoles
         }
     }
 
@@ -93,7 +94,8 @@ class PeopleStep extends Component {
                 input={<Input id="select-multiple-checkbox" />}
                 renderValue={this.getValues}
             >
-                {this.state.selectedRoles.map(role => (
+                // TODO: ugly as fuck!!
+                {this.props.selectedRoles.map(role => (
                     <MenuItem key={role._id} value={role}>
                         <Checkbox checked={this.isChecked(role._id)}/>
                         <ListItemText primary={role.name} />
@@ -143,7 +145,9 @@ class PeopleStep extends Component {
     }
 }
 
-export default PeopleStep;
+const mapStateToProps = state => state.addDiscussionState;
+
+export default connect(mapStateToProps)(PeopleStep);
 
 const people = [
     {first_name: 'שון', last_name: 'דניאל', person_id: '1', process: 65},

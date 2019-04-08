@@ -8,6 +8,8 @@ import Divider from '@material-ui/core/Divider';
 
 import axios from 'axios';
 
+import { connect } from 'react-redux';
+
 import RolesStep from './RolesStep/RolesStep';
 import PeopleStep from './PeopleStep/PeopleStep';
 import DiscussionStep from './DiscussionStep/DiscussionStep';
@@ -36,28 +38,10 @@ class StepperBar extends Component {
 
         this.state = {
             activeStep: 1,
-            people: [],
-            roles: [],
-            discussion: {},
         };
     }
 
-    changeState = async obj => {
-        switch (this.state.activeStep) {
-            case 0:
-                return this.setState({discussion: obj});
-            case 1:
-                return this.setState({roles: obj});
-            case 2:
-                await this.setState({people: obj});
-                return this.handleCreate();
-            default:
-                return 'Unknown step';
-        }
-    };
-
     handleNext = async (obj) => {
-        await this.changeState(obj);
         this.setState(prevState => ({
             activeStep: prevState.activeStep + 1,
         }));
@@ -69,34 +53,6 @@ class StepperBar extends Component {
         }));
     };
 
-    // getCleanUrl = (url) => {
-    //     return url.slice(url.lastIndexOf("/") + 1);
-    // };
-    //
-    // handleIdInit = (response) => {
-    //     let url = this.getCleanUrl(response.config.url);
-    //     let discussion = this.state.discussion;
-    //
-    //     switch (url) {
-    //         case ('person'):
-    //             let discussion_people = discussion.discussion_people || [];
-    //             discussion_people.push(response.data.doc._id);
-    //             discussion.discussion_people = discussion_people;
-    //             this.setState({discussion: discussion});
-    //             break;
-    //         case ('role'):
-    //
-    //     }
-    // };
-
-    saveToDB = (url, obj)=> {
-        axios.post('http://localhost:3001/api/' + url, {'newObj': obj}).then(response => {
-            console.log(response)
-        }).catch(error => {
-            console.error(error)
-        })
-    };
-
     // must be in this order
     getSteps = () => (
         [
@@ -105,18 +61,6 @@ class StepperBar extends Component {
             {url: 'discussion', content: this.state.discussion, label: 'יצירת דש"ב'}
         ]
     );
-
-    handleCreate = () => {
-        this.getSteps().forEach(step => {
-            if (Array.isArray(step.content)) {
-                step.content.forEach(content => {
-                    this.saveToDB(step.url, content);
-                })
-            } else {
-                this.saveToDB(step.url, step.content);
-            }
-        });
-    };
 
     getStepContent = () => {
         switch (this.state.activeStep) {
@@ -132,7 +76,7 @@ class StepperBar extends Component {
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes, roles, people, discussion } = this.props;
         const { activeStep } = this.state;
         const steps = this.getSteps().reverse();
 
@@ -166,4 +110,6 @@ StepperBar.propTypes = {
     classes: PropTypes.object,
 };
 
-export default withStyles(styles)(StepperBar);
+const mapStateToProps = state => state.addDiscussionState;
+
+export default connect(mapStateToProps)(withStyles(styles)(StepperBar));

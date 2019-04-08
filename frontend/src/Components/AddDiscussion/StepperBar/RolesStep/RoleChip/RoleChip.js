@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Chip from '@material-ui/core/Chip';
 import EditIcon from '@material-ui/icons/Edit';
 import { withStyles } from '@material-ui/core/styles';
+import connect from "react-redux/es/connect/connect";
 
 const styles = theme => ({
     chip: {
@@ -11,9 +12,14 @@ const styles = theme => ({
     }
 });
 
-function RoleChip(props) {
-    const { classes, add, remove, variant, role, edit } = props;
+function isChecked(selectedRoles, roleId) {
+    return selectedRoles.find(({_id}) => (
+        _id === roleId
+    )) || false
+}
 
+function RoleChip(props) {
+    const { classes, add, remove, role, edit, selectedRoles } = props;
     return (
         <Chip
             label={props.role.name}
@@ -22,8 +28,8 @@ function RoleChip(props) {
             className={classes.chip}
             color="primary"
             deleteIcon={<EditIcon/>}
-            variant={props.variant}
-            onClick={() => variant === 'default' ? remove(role._id) : add(role)}
+            variant={isChecked(selectedRoles, role._id) ? 'default' : 'outlined'}
+            onClick={isChecked(selectedRoles, role._id) ? remove.bind(this, role) : add.bind(this, role)}
         />
     )
 }
@@ -32,4 +38,14 @@ RoleChip.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RoleChip);
+const mapDispatchToProps = dispatch => {
+    return {
+        add: role => dispatch({ type: 'addToSelectedRoles', payload: role }),
+        remove: ({_id}) => dispatch({ type: 'removeFromSelectedRoles', payload: _id }),
+        edit: role => dispatch({ type: 'selectRoleEdit', payload: role }),
+    }
+};
+
+const mapStateToProps = state => state.addDiscussionState;
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(RoleChip));

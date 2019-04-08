@@ -77,7 +77,6 @@ class Panel extends Component {
             this.getData('role', discussionRole.role);
 
             discussionRole.discussion_people.forEach(personID => {
-                console.log(personID)
                 this.getData('person', personID)
             })
         })
